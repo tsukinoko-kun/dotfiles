@@ -1,3 +1,4 @@
+tap "avencera/tap"
 tap "homebrew/bundle"
 tap "homebrew/cask-fonts"
 tap "homebrew/cask-versions"
@@ -76,6 +77,8 @@ brew "git-lfs"
 brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
+# Manage compile and link flags for libraries
+brew "pkg-config"
 # Fast linters runner for Go
 brew "golangci-lint"
 # Golang formatter that fixes long lines
@@ -96,6 +99,8 @@ brew "jq"
 brew "lazygit"
 # Next-gen compiler infrastructure
 brew "llvm"
+# Just-In-Time Compiler (JIT) for the Lua programming language
+brew "luajit"
 # Package manager for the Lua programming language
 brew "luarocks"
 # Utility for directing compilation
@@ -112,8 +117,6 @@ brew "parallel"
 brew "pdftk-java"
 # Pinentry for GPG on Mac
 brew "pinentry-mac"
-# Manage compile and link flags for libraries
-brew "pkg-config"
 # Draw UML diagrams
 brew "plantuml"
 # Fast, disk space efficient package manager
@@ -148,6 +151,8 @@ brew "wget"
 brew "yamllint"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
+# CLI for organizing Tailwind CSS classes
+brew "avencera/tap/rustywind"
 # Right imports sorting & code formatting tool
 brew "incu6us/tap/goimports-reviser"
 # Incredibly fast JavaScript runtime, bundler, transpiler and package manager - all in one.
@@ -156,10 +161,18 @@ brew "oven-sh/bun/bun"
 brew "tako8ki/tap/gobang"
 # Switch between your git profiles easily
 brew "theykk/tap/git-switcher"
+# Code project bootspraping tool
+brew "tsukinoko-kun/tap/codehere"
+# ls replacement
+brew "tsukinoko-kun/tap/list"
+# Simple file server with a little extra
+brew "tsukinoko-kun/tap/serve"
 # Allows you to manage your stacked changes and submit them for review on GitHub
 brew "withgraphite/tap/graphite"
 # Multi-track audio editor and recorder
 cask "audacity"
+# Cross platform SQL editor and database management app
+cask "beekeeper-studio"
 # OpenJDK distribution from Amazon
 cask "corretto"
 # Developer platform
@@ -172,6 +185,8 @@ cask "font-jetbrains-mono"
 cask "ghidra"
 # Free and open-source image editor
 cask "gimp"
+# Menu bar application that displays the CPU speed limit due to thermal issues
+cask "hot"
 # Free cross-platform office suite, fresh version
 cask "libreoffice"
 # Collection of alternate languages for LibreOffice
@@ -182,8 +197,6 @@ cask "linear-linear"
 cask "obs"
 # Replacement for Docker Desktop
 cask "orbstack"
-# Plain-text file notepad and todo-list manager
-cask "qownnotes"
 # Text editor for code, markup and prose
 cask "sublime-text"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
