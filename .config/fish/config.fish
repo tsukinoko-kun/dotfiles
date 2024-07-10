@@ -28,7 +28,7 @@ export GRAPHVIZ_DOT="$HOMEBREW_PREFIX/bin/dot"
 
 export BUN_INSTALL="$HOME/.bun"
 
-export PATH="$GOPATH/bin/:$PNPM_HOME:$HOME/development/flutter/bin:$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$HOMEBREW_PREFIX/opt/llvm/bin/:$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$HOME/.local/share/cargo/bin:$HOME/.local/share/nvim/mason/bin:$BUN_INSTALL/bin:$PATH"
+export PATH="/Users/frank/Library/Application Support/JetBrains/Toolbox/scripts:$GOPATH/bin/:$PNPM_HOME:$HOME/development/flutter/bin:$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$HOMEBREW_PREFIX/opt/llvm/bin/:$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$HOME/.local/share/cargo/bin:$HOME/.local/share/nvim/mason/bin:$BUN_INSTALL/bin:$PATH"
 
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/amazon-corretto-22.jdk/Contents/Home"
 export PATH="$JAVA_HOME/bin:$PATH"
