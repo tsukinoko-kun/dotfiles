@@ -2,6 +2,7 @@
 :set number relativenumber
 :set clipboard=unnamed
 :set autoindent
+set scrolloff=8
 
 " Plugins
 Plug 'https://github.com/tpope/vim-commentary'
