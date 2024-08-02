@@ -52,6 +52,11 @@ export LIBRARY_PATH="$HOMEBREW_PREFIX/lib"
 alias gcc=gcc-13
 alias g++=g++-13
 
+# copy todays git diff as png
+function today
+    git diff --date=local HEAD~1..HEAD | pygmentize -f png -O style=monokai,full -l diff | open -f -a Preview
+end
+
 function mithere
     echo "Copyright $(date +%Y) Frank Mayer" > LICENSE
     echo '' >> LICENSE
@@ -60,6 +65,35 @@ function mithere
     echo 'The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.' >> LICENSE
     echo '' >> LICENSE
     echo 'THE SOFTWARE IS PROVIDED “AS IS”, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.' >> LICENSE
+end
+
+function pack-universal
+    unzip "$argv[1]-linux-$argv[2].zip" -d "$argv[1]-linux-$argv[2]"
+    unzip "$argv[1]-windows-$argv[2].zip" -d "$argv[1]-windows-$argv[2]"
+    hdiutil mount "$argv[1]-macOS-apple-silicon-$argv[2].dmg" -mountpoint "./$argv[1]-macOS-apple-silicon-$argv[2]"
+    hdiutil mount "$argv[1]-macOS-intel-$argv[2].dmg" -mountpoint "./$argv[1]-macOS-intel-$argv[2]"
+
+    mkdir "$argv[1]-$argv[2]"
+
+    mv "$argv[1]-linux-$argv[2]/$argv[1]" "$argv[1]-$argv[2]/$argv[1]_linux_x86"
+    mv "$argv[1]-linux-$argv[2]/assets" "$argv[1]-$argv[2]/"
+    mv "$argv[1]-windows-$argv[2]/$argv[1].exe" "$argv[1]-$argv[2]/$argv[1].exe"
+    cp "$argv[1]-macOS-apple-silicon-$argv[2]/$argv[1].app/Contents/MacOS/$argv[1]" "$argv[1]-$argv[2]/$argv[1]_mac_arm"
+    cp "$argv[1]-macOS-intel-$argv[2]/$argv[1].app/Contents/MacOS/$argv[1]" "$argv[1]-$argv[2]/$argv[1]_mac_x86"
+
+    echo "creating zip"
+
+    cd "$argv[1]-$argv[2]"
+    ls -la
+    zip -9 -v -r "../$argv[1]-universal-$argv[2].zip" .
+    cd ..
+
+    rm -rf "$argv[1]-$argv[2]"
+    rm -rf "$argv[1]-linux-$argv[2]"
+    rm -rf "$argv[1]-windows-$argv[2]"
+    hdiutil detach "./$argv[1]-macOS-apple-silicon-$argv[2]"
+    hdiutil detach "./$argv[1]-macOS-intel-$argv[2]"
+
 end
 
 function gohere
@@ -187,6 +221,7 @@ if status is-interactive
     golangci-lint completion fish | source
     yab completion fish | source
     gut completion fish | source
+    fzf --fish | source
     complete -f -c dotnet -a "(dotnet complete (commandline -cp))"
 
     alias cd='z'

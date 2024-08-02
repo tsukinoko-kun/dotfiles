@@ -89,12 +89,16 @@ brew "gradle"
 brew "graphviz"
 # Improved top (interactive process viewer)
 brew "htop"
+# Command-line benchmarking tool
+brew "hyperfine"
 # Tools and libraries to manipulate images in many formats
 brew "imagemagick"
 # Convert images to PDF via direct JPEG inclusion
 brew "img2pdf"
 # Lightweight and flexible command-line JSON processor
 brew "jq"
+# Handy way to save and run project-specific commands
+brew "just"
 # Simple terminal UI for git commands
 brew "lazygit"
 # Next-gen compiler infrastructure
@@ -129,6 +133,8 @@ brew "protobuf"
 brew "ripgrep"
 # Used as a compiler wrapper and avoids compilation when possible
 brew "sccache"
+# Library for using TrueType fonts in SDL applications
+brew "sdl2_ttf"
 # Static analysis and lint tool, for (ba)sh scripts
 brew "shellcheck"
 # Simple keystroke visualizer
@@ -141,6 +147,8 @@ brew "superfile"
 brew "tidy-html5"
 # Terminal multiplexer
 brew "tmux"
+# Markup-based typesetting system
+brew "typst"
 # Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
 # Simple terminal image viewer written in Rust
@@ -197,6 +205,8 @@ cask "linear-linear"
 cask "obs"
 # Replacement for Docker Desktop
 cask "orbstack"
+# PDF reader and note-taking application
+cask "skim"
 # Text editor for code, markup and prose
 cask "sublime-text"
 # GPU-accelerated cross-platform terminal emulator and multiplexer
