@@ -213,6 +213,63 @@ function neofetch
     echo -n $fish_greeting
 end
 
+# helper for conventional commits
+function ccm
+    set -l concom_type (gum choose "fix" "feat" "docs" "style" "refactor" "test" "chore" "revert")
+    if test $status -ne 0
+        return
+    end
+
+    set -l concom_scope (gum input --header "scope" --placeholder "affected component")
+    if test $status -ne 0
+        return
+    end
+
+    set -l concom_description (gum input --header "description" --placeholder "short description")
+    if test $status -ne 0
+        return
+    end
+    if test -z $concom_description
+        echo "Description is required"
+        return 1
+    end
+
+    gum confirm --affirmative "No" --negative "Yes" "Breaking changes?"
+    set -l concom_breaking "$status"
+
+    set -l concom_body ""
+    set -l concom_message ""
+
+    if test $concom_breaking -eq "0"
+        set concom_body (gum input --placeholder "detailed description")
+        if test $status -ne 0
+            return
+        end
+
+        if test -z $concom_scope
+            set concom_message "$concom_type: $concom_description"
+        else
+            set concom_message "$concom_type($concom_scope): $concom_description"
+        end
+    else
+        set concom_body (gum input --placeholder "Additional information" --value "BREAKING CHANGE: ")
+        if test $status -ne 0
+            return
+        end
+
+        if test -z $concom_scope
+            set concom_message "$concom_type!: $concom_description"
+        else
+            set concom_message "$concom_type($concom_scope)!: $concom_description"
+        end
+    end
+
+    echo $concom_message
+    echo $concom_body
+
+    gum confirm "Commit?" && gum spin --show-error --title "Committing" -- git commit -m "$concom_message" -m "$concom_body"
+end
+
 if status is-interactive
     # Commands to run in interactive sessions can go here
 
@@ -220,7 +277,7 @@ if status is-interactive
     zoxide init fish | source
     golangci-lint completion fish | source
     yab completion fish | source
-    gut completion fish | source
+    gum completion fish | source
     fzf --fish | source
     complete -f -c dotnet -a "(dotnet complete (commandline -cp))"
 
