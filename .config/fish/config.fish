@@ -214,7 +214,7 @@ function neofetch
 end
 
 # helper for conventional commits
-function ccm
+function commit
     set -l concom_type (gum choose "fix" "feat" "docs" "style" "refactor" "test" "chore" "revert")
     if test $status -ne 0
         return
@@ -268,6 +268,10 @@ function ccm
     echo $concom_body
 
     gum confirm "Commit?" && gum spin --show-error --title "Committing" -- git commit -m "$concom_message" -m "$concom_body"
+end
+
+function pull
+    gum spin --show-error --title "Pulling" -- git pull --rebase --autostash
 end
 
 if status is-interactive
