@@ -214,7 +214,7 @@ function neofetch
 end
 
 # helper for conventional commits
-function commit
+function g_commit
     set -l concom_type (gum choose "fix" "feat" "docs" "style" "refactor" "test" "chore" "revert")
     if test $status -ne 0
         return
@@ -270,8 +270,65 @@ function commit
     gum confirm "Commit?" && gum spin --show-error --title "Committing" -- git commit -m "$concom_message" -m "$concom_body"
 end
 
-function pull
-    gum spin --show-error --title "Pulling" -- git pull --rebase --autostash
+function g
+    if test $argv[1] = "commit"
+        g_commit
+    else if test $argv[1] = "pull"
+        gum spin --show-error --title "Pulling" -- git pull --rebase --autostash
+    else if test $argv[1] = "tree"
+        git log --oneline --graph --color --all --decorate
+    else
+        gum spin --show-error --title "Git $argv" -- git $argv
+    end
+end
+
+function sysupdate
+    gum spin --show-error --title "Updating Homebrew" -- brew update && brew upgrade --greedy && brew cleanup
+    if test $status -ne 0
+        echo "Homebrew update failed"
+        gum confirm "Continue?" || return
+    end
+
+    gum spin --show-error --title "Updating Bob" -- bob update --all
+    if test $status -ne 0
+        echo "Bob update failed"
+        gum confirm "Continue?" || return
+    end
+
+    gum spin --show-error --title "Updating Nvim Lazy" -- nvim --headless +"Lazy! sync" +qa
+    if test $status -ne 0
+        echo "Nvim Lazy update failed"
+        gum confirm "Continue?" || return
+    end
+    gum spin --show-error --title "Updating Nvim Mason" -- nvim --headless +"MasonUpdate" +qa
+    if test $status -ne 0
+        echo "Nvim Mason update failed"
+        gum confirm "Continue?" || return
+    end
+
+    gum spin --show-error --title "Updating Go" -- go-global-update
+    if test $status -ne 0
+        echo "Go update failed"
+        gum confirm "Continue?" || return
+    end
+
+    gum spin --show-error --title "Updating Rust" -- rustup update
+    if test $status -ne 0
+        echo "Rust update failed"
+        gum confirm "Continue?" || return
+    end
+    sleep 1
+    gum spin --show-error --title "Updating Cargo" -- cargo install-update -a
+    if test $status -ne 0
+        echo "Cargo update failed"
+        gum confirm "Continue?" || return
+    end
+
+    gum spin --show-error --title "Updating Fisher" -- fisher update
+    if test $status -ne 0
+        echo "Fisher update failed"
+        gum confirm "Continue?" || return
+    end
 end
 
 if status is-interactive
@@ -293,7 +350,6 @@ if status is-interactive
     alias du='dust'
     alias copy='pbcopy'
     alias paste='pbpaste'
-    alias gtree='git log --oneline --graph --color --all --decorate'
     alias vim='nvim'
     alias vi='nvim'
     alias py='python3'
