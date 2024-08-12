@@ -215,7 +215,7 @@ end
 
 # helper for conventional commits
 function g_commit
-    set -l concom_type (gum choose "fix" "feat" "docs" "style" "refactor" "test" "chore" "revert")
+    set -l concom_type (gum choose "fix" "feat" "build" "chore" "ci" "docs" "style" "refactor" "perf" "test" "security" "release" "other" --header "type")
     if test $status -ne 0
         return
     end
