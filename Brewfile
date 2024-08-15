@@ -13,6 +13,8 @@ tap "tsukinoko-kun/tap"
 brew "openssl@3"
 # Bourne-Again SHell, a UNIX command interpreter
 brew "bash"
+# Compiler infrastructure and toolchain library for WebAssembly
+brew "binaryen"
 # Version manager for neovim
 brew "bob"
 # GNU compiler collection
@@ -57,6 +59,8 @@ brew "golangci-lint"
 brew "golines"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
+# Tool for glamorous shell scripts
+brew "gum"
 # Command-line benchmarking tool
 brew "hyperfine"
 # Tools and libraries to manipulate images in many formats
