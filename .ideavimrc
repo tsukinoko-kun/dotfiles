@@ -10,6 +10,12 @@ Plug 'https://github.com/preservim/nerdtree'
 Plug 'https://github.com/liuchengxu/vim-which-key'
 " Plug 'https://github.com/unblevable/quick-scope'
 
+" Soft wrap navigation
+nnoremap <expr> <Up> (v:count == 0 ? 'gk' : 'k')
+nnoremap <expr> <Down> (v:count == 0 ? 'gj' : 'j')
+vnoremap <expr> <Up> (v:count == 0 ? 'gk' : 'k')
+vnoremap <expr> <Down> (v:count == 0 ? 'gj' : 'j')
+
 " Explorer
 nnoremap - :NERDTreeFocus<CR>
 
