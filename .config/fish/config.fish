@@ -14,6 +14,7 @@ export GNUPGHOME="$XDG_DATA_HOME"/gnupg
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME"/npm/npmrc
 export PNPM_HOME="$XDG_CONFIG_HOME/pnpm"
 export GOPATH="$XDG_DATA_HOME"/go
+export GOROOT="$HOMEBREW_PREFIX"/opt/go/libexec
 export LESSHISTFILE="$XDG_CACHE_HOME"/less/history
 export NODE_REPL_HISTORY="$XDG_DATA_HOME"/node_repl_history
 export COREPACK_ENABLE_STRICT=0
@@ -28,7 +29,7 @@ export GRAPHVIZ_DOT="$HOMEBREW_PREFIX/bin/dot"
 
 export BUN_INSTALL="$HOME/.bun"
 
-export PATH="/Users/frank/Library/Application Support/JetBrains/Toolbox/scripts:$GOPATH/bin/:$PNPM_HOME:$HOME/development/flutter/bin:$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$HOMEBREW_PREFIX/opt/llvm/bin/:$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$HOME/.local/share/cargo/bin:$HOME/.local/share/nvim/mason/bin:$BUN_INSTALL/bin:$PATH"
+export PATH="/Users/frank/Library/Application Support/JetBrains/Toolbox/scripts:$GOPATH/bin/:$GOROOT/bin/:$PNPM_HOME:$HOME/development/flutter/bin:$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$HOMEBREW_PREFIX/opt/llvm/bin/:$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$HOMEBREW_PREFIX/opt/coreutils/libexec/gnubin:$HOME/.local/share/cargo/bin:$HOME/.local/share/nvim/mason/bin:$BUN_INSTALL/bin:$PATH"
 
 export JAVA_HOME="/Library/Java/JavaVirtualMachines/amazon-corretto-22.jdk/Contents/Home"
 export PATH="$JAVA_HOME/bin:$PATH"
