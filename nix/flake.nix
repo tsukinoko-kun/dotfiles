@@ -77,6 +77,8 @@
           "DaVinci Resolve" = 571213070;
         };
         onActivation.cleanup = "zap";
+        onActivation.autoUpdate = true;
+        onActivation.upgrade = true;
       };
 
       fonts.packages = [
