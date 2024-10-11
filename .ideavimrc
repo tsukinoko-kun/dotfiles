@@ -169,3 +169,4 @@ nnoremap J mzJ`z
 " smart q
 nnoremap Q @q
 
+set clipboard^=ideaput

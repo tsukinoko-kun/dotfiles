@@ -1,9 +1,0 @@
-VER=-13
-CC=gcc$(VER)
-CXX=g++$(VER)
-CXX11=g++$(VER)
-CXX14=g++$(VER)
-CXX17=g++$(VER)
-CFLAGS=-mtune=native -g -O2 -Wall -pedantic -Wconversion
-CXXFLAGS=-mtune=native -g -O2 -Wall -pedantic -Wconversion
-FLIBS=-L /opt/homebrew/Cellar/gcc/14.2.0/lib/gcc/13 -L /opt/homebrew/include
