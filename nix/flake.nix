@@ -16,10 +16,11 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       environment.systemPackages = [
+        pkgs.aldente
+        pkgs.arc-browser
         pkgs.audacity
         pkgs.neovim
         pkgs.mkalias
-        pkgs.wezterm
         pkgs.openssl_3_2
         pkgs.raycast
         pkgs.discord
@@ -38,9 +39,11 @@
         pkgs.graphviz
         pkgs.gum
         pkgs.imagemagick
+        pkgs.jetbrains-mono
         pkgs.jq
         pkgs.just
         pkgs.lazygit
+        pkgs.luajitPackages.luacheck
         pkgs.markdownlint-cli
         pkgs.pinentry_mac
         pkgs.plantuml
@@ -69,6 +72,7 @@
           "corretto"
           "hot"
           "orbstack"
+          "wezterm"
         ];
         brews = [
           "tidy-html5"
@@ -104,6 +108,22 @@
           ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
         done
             '';
+
+      system.defaults = {
+        dock.autohide = true;
+        dock.persistent-apps = [
+          "${pkgs.arc-browser}/Applications/Arc.app"
+          "${pkgs.discord}/Applications/Discord.app"
+          "/Applications/Spotify.app"
+          "/Applications/WezTerm.app"
+        ];
+        finder.FXPreferredViewStyle = "icnv";
+        finder.ShowPathbar = true;
+        loginwindow.GuestEnabled = false;
+        NSGlobalDomain.AppleICUForce24HourTime = true;
+        NSGlobalDomain.AppleInterfaceStyle = "Dark";
+        NSGlobalDomain.KeyRepeat = 2;
+      };
 
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
@@ -146,4 +166,3 @@
     darwinPackages = self.darwinConfigurations."macbook".pkgs;
   };
 }
-
