@@ -13,8 +13,7 @@ if wezterm.config_builder then
 	config = wezterm.config_builder()
 end
 
-config.default_prog = { "/opt/homebrew/bin/fish", "-l" }
-config.window_background_image = "/Users/frank/.config/wezterm/frieren-night.png"
+-- config.window_background_image = "/Users/frank/.config/wezterm/frieren-night.png"
 
 config.color_scheme = "Catppuccin Mocha"
 config.default_cursor_style = "SteadyBar"
@@ -31,8 +30,13 @@ config.send_composed_key_when_right_alt_is_pressed = false
 
 config.window_decorations = "RESIZE"
 -- config.font = wezterm.font("JetBrains Mono")
-config.font = wezterm.font_with_fallback({ "JetBrains Mono", "JetBrainsMono Nerd Font", "Apple Color Emoji" })
-config.font_size = 19.0
+config.font = wezterm.font_with_fallback({
+	"JetBrains Mono",
+	"JetBrainsMono Nerd Font",
+	"Apple Color Emoji",
+	"Courier New",
+})
+config.font_size = 17.0
 config.unicode_version = 16
 config.leader = { key = "b", mods = "CTRL" }
 config.hide_tab_bar_if_only_one_tab = false

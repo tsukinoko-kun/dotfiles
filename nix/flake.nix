@@ -52,6 +52,7 @@
         pkgs.sccache
         pkgs.shellcheck
         pkgs.skimpdf
+        pkgs.starship
         pkgs.stylua
         pkgs.tmux
         pkgs.typst
@@ -61,6 +62,7 @@
         pkgs.rustywind
         pkgs.goimports-reviser
         pkgs.xz
+        pkgs.zoxide
       ];
 
       homebrew = {
@@ -114,8 +116,11 @@
         done
             '';
 
+      security.pam.enableSudoTouchIdAuth = true;
+
       system.defaults = {
         dock.autohide = true;
+        dock.mru-spaces = false;
         dock.persistent-apps = [
           "/Applications/Arc.app"
           "/Applications/Discord.app"
@@ -124,11 +129,17 @@
         ];
         finder.FXPreferredViewStyle = "icnv";
         finder.ShowPathbar = true;
+        finder.AppleShowAllExtensions = true;
         loginwindow.GuestEnabled = false;
         NSGlobalDomain.AppleICUForce24HourTime = true;
         NSGlobalDomain.AppleInterfaceStyle = "Dark";
         NSGlobalDomain.KeyRepeat = 2;
+        screensaver.askForPasswordDelay = 10;
       };
+
+      networking.hostName = "franks-macbook-pro";
+      networking.computerName = "Frank’s MacBook Pro";
+      networking.localHostName = "franks-macbook-pro";
 
       # Auto upgrade nix package and the daemon service.
       services.nix-daemon.enable = true;
@@ -137,7 +148,43 @@
       # Necessary for using flakes on this system.
       nix.settings.experimental-features = "nix-command flakes";
 
-      programs.zsh.enable = true;
+      programs.zsh = {
+        enable = true;
+        promptInit = "";
+        loginShellInit = ''
+          c1="\x1b[38;2;86;121;194m"
+          c2="\x1b[38;2;131;188;227m"
+          cr="\x1b[0m"
+          printf "$c1          ▗▄▄▄       $c2▗▄▄▄▄    ▄▄▄▖            $c2$(whoami)$cr@$c2$(scutil --get ComputerName)\n"
+          printf "$c1          ▜███▙       $c2▜███▙  ▟███▛           $cr -------------------\n"
+          printf "$c1           ▜███▙       $c2▜███▙▟███▛            $c1 OS$c2: macOS\n"
+          printf "$c1            ▜███▙       $c2▜██████▛             $c1 Default Shell$c2: $(basename $SHELL)\n"
+          printf "$c1     ▟█████████████████▙ $c2▜████▛     $c1▟▙       $c1 DE$c2: Aqua\n"
+          printf "$c1    ▟███████████████████▙ $c2▜███▙    $c1▟██▙      $c1 WB$c2: Quartz Compositor\n"
+          printf "$c2           ▄▄▄▄▖           ▜███▙  $c1▟███▛      $c1 Terminal$c2: $TERM_PROGRAM $TERM\n"
+          printf "$c2          ▟███▛             ▜██▛ $c1▟███▛       $c1 CPU$c2: $(sysctl -n machdep.cpu.brand_string) $(sysctl -n hw.logicalcpu_max)-Core\n"
+          printf "$c2         ▟███▛               ▜▛ $c1▟███▛\n"
+          printf "$c2▟███████████▛                  $c1▟██████████▙\n"
+          printf "$c2▜██████████▛                  $c1▟███████████▛\n"
+          printf "$c2      ▟███▛ $c1▟▙               ▟███▛\n"
+          printf "$c2     ▟███▛ $c1▟██▙             ▟███▛\n"
+          printf "$c2    ▟███▛  $c1▜███▙           ▝▀▀▀▀\n"
+          printf "$c2    ▜██▛    $c1▜███▙ $c2▜██████████████████▛\n"
+          printf "$c2     ▜▛     $c1▟████▙ $c2▜████████████████▛\n"
+          printf "$c1           ▟██████▙       $c2▜███▙\n"
+          printf "$c1          ▟███▛▜███▙       $c2▜███▙\n"
+          printf "$c1         ▟███▛  ▜███▙       $c2▜███▙\n"
+          printf "$c1         ▝▀▀▀    ▀▀▀▀▘       $c2▀▀▀▘$cr\n"
+        '';
+        interactiveShellInit = ''
+          eval "$(starship init zsh)"
+          eval "$(zoxide init zsh)"
+          alias vim=nvim
+          alias vi=nvim
+          alias cd=z
+          alias lg=lazygit
+        '';
+      };
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
