@@ -72,6 +72,8 @@
           "corretto"
           "hot"
           "orbstack"
+          "termius"
+          "vlc"
           "wezterm"
         ];
         brews = [
@@ -79,6 +81,9 @@
         ];
         masApps = {
           "DaVinci Resolve" = 571213070;
+          "Ausweis App" = 948660805;
+          "Bitwarden" = 1352778147;
+          "Evertag" = 1594027661;
         };
         onActivation.cleanup = "zap";
         onActivation.autoUpdate = true;
