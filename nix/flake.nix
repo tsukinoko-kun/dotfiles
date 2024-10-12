@@ -17,13 +17,11 @@
       # $ nix-env -qaP | grep wget
       environment.systemPackages = [
         pkgs.aldente
-        pkgs.arc-browser
         pkgs.audacity
         pkgs.neovim
         pkgs.mkalias
         pkgs.openssl_3_2
         pkgs.raycast
-        pkgs.discord
         pkgs.coreutils
         pkgs.cppcheck
         pkgs.ffmpeg_7-full
@@ -68,8 +66,10 @@
       homebrew = {
         enable = true;
         casks = [
+          "arc"
           "beekeeper-studio"
           "corretto"
+          "discord"
           "hot"
           "orbstack"
           "termius"
@@ -117,8 +117,8 @@
       system.defaults = {
         dock.autohide = true;
         dock.persistent-apps = [
-          "${pkgs.arc-browser}/Applications/Arc.app"
-          "${pkgs.discord}/Applications/Discord.app"
+          "/Applications/Arc.app"
+          "/Applications/Discord.app"
           "/Applications/Spotify.app"
           "/Applications/WezTerm.app"
         ];
