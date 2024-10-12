@@ -6,9 +6,12 @@
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+    # home-nix = { url = "path:./home.nix"; flake = false; };
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = inputs@{ self, nix-darwin, nixpkgs, nix-homebrew }:
+  outputs = inputs@{ self, nix-darwin, nixpkgs, home-manager, nix-homebrew }:
   let
     configuration = { pkgs, config, ... }: {
       nixpkgs.config.allowUnfree = true;
@@ -118,36 +121,6 @@
 
       security.pam.enableSudoTouchIdAuth = true;
 
-      system.defaults = {
-        dock.autohide = true;
-        dock.mru-spaces = false;
-        dock.persistent-apps = [
-          "/Applications/Arc.app"
-          "/Applications/Discord.app"
-          "/Applications/Spotify.app"
-          "/Applications/WezTerm.app"
-        ];
-        finder.FXPreferredViewStyle = "icnv";
-        finder.ShowPathbar = true;
-        finder.AppleShowAllExtensions = true;
-        loginwindow.GuestEnabled = false;
-        NSGlobalDomain.AppleICUForce24HourTime = true;
-        NSGlobalDomain.AppleInterfaceStyle = "Dark";
-        NSGlobalDomain.KeyRepeat = 2;
-        screensaver.askForPasswordDelay = 10;
-      };
-
-      networking.hostName = "franks-macbook-pro";
-      networking.computerName = "Frank’s MacBook Pro";
-      networking.localHostName = "franks-macbook-pro";
-
-      # Auto upgrade nix package and the daemon service.
-      services.nix-daemon.enable = true;
-      # nix.package = pkgs.nix;
-
-      # Necessary for using flakes on this system.
-      nix.settings.experimental-features = "nix-command flakes";
-
       programs.zsh = {
         enable = true;
         promptInit = "";
@@ -186,6 +159,37 @@
         '';
       };
 
+      users.users.frank.home = "/Users/frank";
+
+      system.defaults = {
+        dock.autohide = true;
+        dock.mru-spaces = false;
+        dock.persistent-apps = [
+          "/Applications/Arc.app"
+          "/Applications/Discord.app"
+          "/Applications/Spotify.app"
+        ];
+        finder.FXPreferredViewStyle = "icnv";
+        finder.ShowPathbar = true;
+        finder.AppleShowAllExtensions = true;
+        loginwindow.GuestEnabled = false;
+        NSGlobalDomain.AppleICUForce24HourTime = true;
+        NSGlobalDomain.AppleInterfaceStyle = "Dark";
+        NSGlobalDomain.KeyRepeat = 2;
+        screensaver.askForPasswordDelay = 10;
+      };
+
+      networking.hostName = "franks-macbook-pro";
+      networking.computerName = "Frank’s MacBook Pro";
+      networking.localHostName = "franks-macbook-pro";
+
+      # Auto upgrade nix package and the daemon service.
+      services.nix-daemon.enable = true;
+      # nix.package = pkgs.nix;
+
+      # Necessary for using flakes on this system.
+      nix.settings.experimental-features = "nix-command flakes";
+
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
 
@@ -210,6 +214,11 @@
             user = "frank";
             autoMigrate = true;
           };
+        }
+        home-manager.darwinModules.home-manager {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          home-manager.users.frank = import /Users/frank/Git/dotfiles/nix/home.nix;
         }
       ];
     };
