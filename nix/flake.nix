@@ -22,6 +22,7 @@
         pkgs.aldente
         pkgs.audacity
         pkgs.neovim
+        pkgs.nodejs_20
         pkgs.mkalias
         pkgs.openssl_3_2
         pkgs.raycast
@@ -65,11 +66,19 @@
         pkgs.rustywind
         pkgs.goimports-reviser
         pkgs.xz
+        pkgs.yaml-language-server
         pkgs.zoxide
       ];
 
       homebrew = {
         enable = true;
+        taps = [
+          {
+            name = "tsukinoko-kun/tap";
+            clone_target = "https://github.com/tsukinoko-kun/homebrew-tap.git";
+            force_auto_update = true;
+          }
+        ];
         casks = [
           "arc"
           "beekeeper-studio"
@@ -83,6 +92,7 @@
         ];
         brews = [
           "tidy-html5"
+          "tsukinoko-kun/tap/portal"
         ];
         masApps = {
           "DaVinci Resolve" = 571213070;
@@ -156,6 +166,8 @@
           alias vi=nvim
           alias cd=z
           alias lg=lazygit
+          alias yamlls=yaml-language-server
+          export PATH="$PATH:/opt/homebrew/bin"
         '';
       };
 
