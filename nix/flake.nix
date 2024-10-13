@@ -167,6 +167,7 @@
           alias cd=z
           alias lg=lazygit
           alias l=ls -l
+          alias tree=ls -R
           alias yamlls=yaml-language-server
           export PATH="$PATH:/opt/homebrew/bin"
         '';
