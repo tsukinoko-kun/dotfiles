@@ -169,8 +169,9 @@
           alias lg=lazygit
           alias l=ls -l
           alias tree=ls -R
-          alias yamlls=yaml-language-server
-          export PATH="$PATH:/opt/homebrew/bin"
+          export GOROOT=$(go env GOROOT)
+          export GOPATH=$(go env GOPATH)
+          export PATH="$PATH:/opt/homebrew/bin:/opt/homebrew/sbin:$GOPATH/bin"
         '';
       };
 
