@@ -59,6 +59,7 @@
         pkgs.skimpdf
         pkgs.starship
         pkgs.stylua
+        pkgs.templ
         pkgs.tmux
         pkgs.typst
         pkgs.viu
