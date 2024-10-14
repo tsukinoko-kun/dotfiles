@@ -22,6 +22,7 @@
         pkgs.air
         pkgs.aldente
         pkgs.audacity
+        pkgs.duti
         pkgs.neovim
         pkgs.nodejs_20
         pkgs.mkalias
@@ -88,6 +89,7 @@
           "discord"
           "hot"
           "orbstack"
+          "sublime-text"
           "termius"
           "vlc"
           "wezterm"
@@ -129,7 +131,7 @@
           echo "copying $src" >&2
           ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
         done
-            '';
+      '';
 
       security.pam.enableSudoTouchIdAuth = true;
 
@@ -164,35 +166,63 @@
         interactiveShellInit = ''
           eval "$(starship init zsh)"
           eval "$(zoxide init zsh)"
-          alias vim=nvim
-          alias vi=nvim
-          alias cd=z
-          alias lg=lazygit
-          alias l=ls -l
-          alias tree=ls -R
-          export GOROOT=$(go env GOROOT)
-          export GOPATH=$(go env GOPATH)
-          export PATH="$PATH:/opt/homebrew/bin:/opt/homebrew/sbin:$GOPATH/bin"
         '';
       };
 
       users.users.frank.home = "/Users/frank";
 
       system.defaults = {
-        dock.autohide = true;
-        dock.mru-spaces = false;
-        dock.persistent-apps = [
-          "/Applications/Arc.app"
-          "/Applications/Discord.app"
-          "/Applications/Spotify.app"
-        ];
+        dock = {
+          autohide = true;
+          mru-spaces = false;
+          persistent-apps = [
+            "/Applications/Arc.app"
+            "/Applications/Discord.app"
+            "/Applications/Spotify.app"
+          ];
+          magnification = true;
+          largesize = 64;
+          tilesize = 48;
+          orientation = "bottom";
+          wvous-bl-corner = 1;
+          wvous-br-corner = 1;
+          wvous-tl-corner = 1;
+          wvous-tr-corner = 1;
+        };
+        screencapture = {
+          disable-shadow = true;
+          location = "/Users/frank/Desktop";
+          show-thumbnail = true;
+          type = "jpg";
+        };
+        menuExtraClock = {
+          ShowAMPM = false;
+          ShowDayOfWeek = true;
+          ShowDate = 0;
+          ShowSeconds = false;
+        };
+        WindowManager = {
+          EnableStandardClickToShowDesktop = false;
+        };
         finder.FXPreferredViewStyle = "icnv";
         finder.ShowPathbar = true;
         finder.AppleShowAllExtensions = true;
         loginwindow.GuestEnabled = false;
-        NSGlobalDomain.AppleICUForce24HourTime = true;
-        NSGlobalDomain.AppleInterfaceStyle = "Dark";
-        NSGlobalDomain.KeyRepeat = 2;
+        NSGlobalDomain = {
+          AppleICUForce24HourTime = true;
+          AppleInterfaceStyle = "Dark";
+          AppleMetricUnits = 1;
+          ApplePressAndHoldEnabled = true;
+          AppleShowAllExtensions = true;
+          AppleTemperatureUnit = "Celsius";
+          KeyRepeat = 2;
+          NSAutomaticCapitalizationEnabled = false;
+          NSAutomaticDashSubstitutionEnabled = false;
+          NSAutomaticPeriodSubstitutionEnabled = false;
+          NSAutomaticQuoteSubstitutionEnabled = false;
+          NSAutomaticSpellingCorrectionEnabled = false;
+          _HIHideMenuBar = false;
+        };
         screensaver.askForPasswordDelay = 10;
       };
 

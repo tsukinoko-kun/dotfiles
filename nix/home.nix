@@ -3,8 +3,33 @@
 {
   home.username = "frank";
   home.homeDirectory = "/Users/frank";
-
   home.stateVersion = "24.05";
+  home.sessionPath = [
+    "/opt/homebrew/bin"
+    "/opt/homebrew/sbin"
+    "$(go env GOPATH)/bin"
+  ];
+  home.shellAliases = {
+    "ll" = "ls -l";
+    "la" = "ls -la";
+    "l" = "ls -l";
+    "tree" = "ls -R";
+    "vi" = "nvim";
+    "vim" = "nvim";
+    "cd" = "z";
+    "lg" = "lazygit";
+  };
+  home.sessionVariables = {
+    "EDITOR" = "nvim";
+    "VISUAL" = "nvim";
+    "GOPATH" = "$(go env GOPATH)";
+    "GOROOT" = "$(go env GOROOT)";
+  };
+  home.keyboard.layout = "de";
+  home.language.base = "en_US.UTF-8";
+  home.language.measurement = "metric";
+  home.language.time = "24h";
+  home.language.paper = "a4";
 
   programs.home-manager.enable = true;
 
