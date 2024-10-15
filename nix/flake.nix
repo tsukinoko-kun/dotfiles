@@ -49,10 +49,12 @@
         pkgs.lazygit
         pkgs.luajitPackages.luacheck
         pkgs.markdownlint-cli
+        pkgs.nixfmt-rfc-style
         pkgs.pinentry_mac
         pkgs.plantuml
         pkgs.pnpm
         pkgs.protobuf
+        pkgs.revive
         pkgs.ripgrep
         pkgs.rustup
         pkgs.sccache
@@ -81,6 +83,7 @@
             clone_target = "https://github.com/tsukinoko-kun/homebrew-tap.git";
             force_auto_update = true;
           }
+          "teamookla/speedtest"
         ];
         casks = [
           "arc"
@@ -95,6 +98,7 @@
           "wezterm"
         ];
         brews = [
+          "speedtest"
           "tidy-html5"
           "tsukinoko-kun/tap/portal"
         ];
