@@ -31,12 +31,16 @@
             pkgs.air
             pkgs.aldente
             pkgs.audacity
+            pkgs.cmake
+            pkgs.cppcheck
             pkgs.duti
             pkgs.neovim
             pkgs.nodejs_20
+            pkgs.nodePackages_latest.jsonlint
             pkgs.mkalias
             pkgs.openssl_3_2
             pkgs.raycast
+            pkgs.ccls
             pkgs.coreutils
             pkgs.cppcheck
             pkgs.ffmpeg_7-full
@@ -47,6 +51,7 @@
             pkgs.gnupg
             pkgs.go
             pkgs.pkg-config
+            pkgs.python3
             pkgs.golangci-lint
             pkgs.golines
             pkgs.graphviz
@@ -56,6 +61,7 @@
             pkgs.jq
             pkgs.just
             pkgs.lazygit
+            pkgs.llvmPackages.libcxxClang
             pkgs.luajitPackages.luacheck
             pkgs.markdownlint-cli
             pkgs.nixfmt-rfc-style
@@ -63,6 +69,7 @@
             pkgs.plantuml
             pkgs.pnpm
             pkgs.protobuf
+            pkgs.recode
             pkgs.revive
             pkgs.ripgrep
             pkgs.rustup
