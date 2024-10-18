@@ -38,7 +38,7 @@
             pkgs.nodejs_20
             pkgs.nodePackages_latest.jsonlint
             pkgs.mkalias
-            pkgs.openssl_3_2
+            pkgs.openssl_3_3
             pkgs.raycast
             pkgs.ccls
             pkgs.coreutils
@@ -82,6 +82,8 @@
             pkgs.templ
             pkgs.tmux
             pkgs.typst
+            pkgs.typstyle
+            pkgs.typst-lsp
             pkgs.viu
             pkgs.wget
             pkgs.yamllint
