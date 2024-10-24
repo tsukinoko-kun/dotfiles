@@ -61,7 +61,6 @@
             pkgs.jq
             pkgs.just
             pkgs.lazygit
-            pkgs.llvmPackages.libcxxClang
             pkgs.luajitPackages.luacheck
             pkgs.markdownlint-cli
             pkgs.nixfmt-rfc-style
@@ -120,6 +119,7 @@
               "speedtest"
               "tidy-html5"
               "tsukinoko-kun/tap/portal"
+              "tsukinoko-kun/tap/serve"
             ];
             masApps = {
               "DaVinci Resolve" = 571213070;

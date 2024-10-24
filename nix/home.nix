@@ -9,6 +9,7 @@
     "/opt/homebrew/bin"
     "/opt/homebrew/sbin"
     "$(go env GOPATH)/bin"
+    "/Users/frank/Library/Application Support/JetBrains/Toolbox/scripts"
   ];
   home.shellAliases = {
     "ll" = "ls -l";
@@ -19,14 +20,15 @@
     "vim" = "nvim";
     "cd" = "z";
     "lg" = "lazygit";
-    "CXX" = "clang++";
-    "CC" = "clang";
+    "CXX" = "/usr/bin/clang++";
+    "CC" = "/usr/bin/clang";
   };
   home.sessionVariables = {
     "EDITOR" = "nvim";
     "VISUAL" = "nvim";
     "GOPATH" = "$(go env GOPATH)";
     "GOROOT" = "$(go env GOROOT)";
+    "TEMPL_EXPERIMENT" = "rawgo";
   };
   home.keyboard.layout = "de";
   home.language.base = "en_US.UTF-8";
