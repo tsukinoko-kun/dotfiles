@@ -60,6 +60,7 @@
             pkgs.jetbrains-mono
             pkgs.jq
             pkgs.just
+            pkgs.lame
             pkgs.lazygit
             pkgs.luajitPackages.luacheck
             pkgs.markdownlint-cli
@@ -75,6 +76,7 @@
             pkgs.sccache
             pkgs.shellcheck
             pkgs.skimpdf
+            pkgs.sshpass
             pkgs.starship
             pkgs.stylelint
             pkgs.stylua

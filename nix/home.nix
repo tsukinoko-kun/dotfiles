@@ -30,11 +30,6 @@
     "GOROOT" = "$(go env GOROOT)";
     "TEMPL_EXPERIMENT" = "rawgo";
   };
-  home.keyboard.layout = "de";
-  home.language.base = "en_US.UTF-8";
-  home.language.measurement = "metric";
-  home.language.time = "24h";
-  home.language.paper = "a4";
 
   programs.home-manager.enable = true;
 
