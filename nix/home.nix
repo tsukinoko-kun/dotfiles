@@ -20,10 +20,10 @@
     "vim" = "nvim";
     "cd" = "z";
     "lg" = "lazygit";
-    "CXX" = "/usr/bin/clang++";
-    "CC" = "/usr/bin/clang";
   };
   home.sessionVariables = {
+    "CXX" = "/usr/bin/clang++";
+    "CC" = "/usr/bin/clang";
     "EDITOR" = "nvim";
     "VISUAL" = "nvim";
     "GOPATH" = "$(go env GOPATH)";
