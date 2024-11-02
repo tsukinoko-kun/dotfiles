@@ -8,14 +8,10 @@
     "/run/current-system/sw/bin"
     "/opt/homebrew/bin"
     "/opt/homebrew/sbin"
-    "$(go env GOPATH)/bin"
+    "$(/run/current-system/sw/bin/go env GOPATH)/bin"
     "/Users/frank/Library/Application Support/JetBrains/Toolbox/scripts"
   ];
   home.shellAliases = {
-    "ll" = "ls -l";
-    "la" = "ls -la";
-    "l" = "ls -l";
-    "tree" = "ls -R";
     "vi" = "nvim";
     "vim" = "nvim";
     "cd" = "z";
@@ -29,9 +25,15 @@
     "GOPATH" = "$(go env GOPATH)";
     "GOROOT" = "$(go env GOROOT)";
     "TEMPL_EXPERIMENT" = "rawgo";
+    "XDG_CONFIG_HOME" = "/Users/frank/.config";
+    "XDG_DATA_HOME" = "/Users/frank/.local/share";
+    "XDG_CACHE_HOME" = "/Users/frank/.cache";
+    "XDG_STATE_HOME" = "/Users/frank/.local/state";
   };
 
   programs.home-manager.enable = true;
+  programs.direnv.enable = true;
+  programs.direnv.nix-direnv.enable = true;
 
   services.gpg-agent = {
     enable = true;
@@ -56,6 +58,8 @@
       if wezterm.config_builder then
         config = wezterm.config_builder()
       end
+
+      config.default_prog = { "/run/current-system/sw/bin/nu" }
 
       config.color_scheme = "Catppuccin Mocha"
       config.default_cursor_style = "SteadyBar"
@@ -163,8 +167,78 @@
     ];
   };
 
+  programs.nushell =
+    let
+      sessionVars = builtins.concatStringsSep "\n" (
+        map (key: ''$env.${key} = "${config.home.sessionVariables.${key}}"'') (
+          builtins.attrNames config.home.sessionVariables
+        )
+      );
+    in
+    {
+      enable = true;
+      envFile = {
+        text = ''
+          ${sessionVars}
+        '';
+      };
+      shellAliases = config.home.shellAliases;
+      configFile = {
+        text = ''
+          $env.PATH = (
+            $env.PATH
+            | split row (char esep)
+            | append /run/current-system/sw/bin
+            | append ${config.home.profileDirectory}/bin
+            | append ${config.home.profileDirectory}/share
+            | append ${config.home.profileDirectory}/lib
+            | append /Users/frank/go/bin
+            | append '/Users/frank/Library/Application Support/JetBrains/Toolbox/scripts'
+            | append /opt/homebrew/bin
+            | append /opt/homebrew/sbin
+            | append ($env.HOME | path join .local bin)
+            | uniq
+          )
+          $env.config = {
+            show_banner: false
+            completions: {
+              case_sensitive: false
+              quick: true
+              partial: true
+              algorithm: "fuzzy"
+            }
+            cursor_shape: {
+              vi_insert: line
+              vi_normal: block
+            }
+            buffer_editor: "nvim"
+            use_ansi_coloring: true
+            bracketed_paste: true
+            edit_mode: vi
+            use_kitty_protocol: true
+          }
+        '';
+      };
+    };
+
+  programs.carapace = {
+    enable = true;
+    package = pkgs.carapace;
+    enableNushellIntegration = true;
+    enableZshIntegration = true;
+  };
+
+  programs.zoxide = {
+    enable = true;
+    package = pkgs.zoxide;
+    enableZshIntegration = true;
+    enableNushellIntegration = true;
+  };
+
   programs.starship = {
     enable = true;
+    enableNushellIntegration = true;
+    enableZshIntegration = true;
     settings = {
       directory = {
         truncation_length = 3;

@@ -31,12 +31,14 @@
             pkgs.air
             pkgs.aldente
             pkgs.audacity
+            pkgs.carapace
             pkgs.cmake
             pkgs.cppcheck
             pkgs.duti
             pkgs.neovim
             pkgs.nodejs_20
             pkgs.nodePackages_latest.jsonlint
+            pkgs.nushell
             pkgs.mkalias
             pkgs.openssl_3_3
             pkgs.raycast
@@ -188,10 +190,6 @@
               printf "$c1          ▟███▛▜███▙       $c2▜███▙\n"
               printf "$c1         ▟███▛  ▜███▙       $c2▜███▙\n"
               printf "$c1         ▝▀▀▀    ▀▀▀▀▘       $c2▀▀▀▘$cr\n"
-            '';
-            interactiveShellInit = ''
-              eval "$(starship init zsh)"
-              eval "$(zoxide init zsh)"
             '';
           };
 
