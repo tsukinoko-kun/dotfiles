@@ -8,7 +8,6 @@
     "/run/current-system/sw/bin"
     "/opt/homebrew/bin"
     "/opt/homebrew/sbin"
-    "$(/run/current-system/sw/bin/go env GOPATH)/bin"
     "/Users/frank/Library/Application Support/JetBrains/Toolbox/scripts"
   ];
   home.shellAliases = {
@@ -22,9 +21,8 @@
     "CC" = "/usr/bin/clang";
     "EDITOR" = "nvim";
     "VISUAL" = "nvim";
-    "GOPATH" = "$(go env GOPATH)";
-    "GOROOT" = "$(go env GOROOT)";
     "TEMPL_EXPERIMENT" = "rawgo";
+    "GOPATH" = "/Users/frank/go";
     "XDG_CONFIG_HOME" = "/Users/frank/.config";
     "XDG_DATA_HOME" = "/Users/frank/.local/share";
     "XDG_CACHE_HOME" = "/Users/frank/.cache";
@@ -413,5 +411,11 @@
         symbol = " ";
       };
     };
+  };
+
+  programs.go = {
+    enable = true;
+    package = pkgs.go;
+    goPath = "go";
   };
 }
