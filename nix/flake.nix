@@ -118,6 +118,7 @@
               "termius"
               "vlc"
               "wezterm"
+              "zen-browser"
             ];
             brews = [
               "speedtest"
