@@ -201,7 +201,7 @@
               autohide = true;
               mru-spaces = false;
               persistent-apps = [
-                "/Applications/Zen Browser.app"
+                "/Applications/Arc.app"
                 "/Applications/WezTerm.app"
                 "/Applications/Discord.app"
                 "/Applications/Spotify.app"
