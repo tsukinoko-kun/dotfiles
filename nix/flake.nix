@@ -39,7 +39,6 @@
             pkgs.neovim
             pkgs.nodejs_20
             pkgs.nodePackages_latest.jsonlint
-            pkgs.nushell
             pkgs.mkalias
             pkgs.openssl_3_3
             pkgs.raycast

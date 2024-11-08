@@ -57,8 +57,6 @@
         config = wezterm.config_builder()
       end
 
-      config.default_prog = { "/run/current-system/sw/bin/nu" }
-
       config.color_scheme = "Catppuccin Mocha"
       config.default_cursor_style = "SteadyBar"
 
@@ -165,64 +163,9 @@
     ];
   };
 
-  programs.nushell =
-    let
-      sessionVars = builtins.concatStringsSep "\n" (
-        map (key: ''$env.${key} = "${config.home.sessionVariables.${key}}"'') (
-          builtins.attrNames config.home.sessionVariables
-        )
-      );
-    in
-    {
-      enable = true;
-      envFile = {
-        text = ''
-          ${sessionVars}
-        '';
-      };
-      shellAliases = config.home.shellAliases;
-      configFile = {
-        text = ''
-          $env.PATH = (
-            $env.PATH
-            | split row (char esep)
-            | append /run/current-system/sw/bin
-            | append ${config.home.profileDirectory}/bin
-            | append ${config.home.profileDirectory}/share
-            | append ${config.home.profileDirectory}/lib
-            | append /Users/frank/go/bin
-            | append '/Users/frank/Library/Application Support/JetBrains/Toolbox/scripts'
-            | append /opt/homebrew/bin
-            | append /opt/homebrew/sbin
-            | append ($env.HOME | path join .local bin)
-            | uniq
-          )
-          $env.config = {
-            show_banner: false
-            completions: {
-              case_sensitive: false
-              quick: true
-              partial: true
-              algorithm: "fuzzy"
-            }
-            cursor_shape: {
-              vi_insert: line
-              vi_normal: block
-            }
-            buffer_editor: "nvim"
-            use_ansi_coloring: true
-            bracketed_paste: true
-            edit_mode: vi
-            use_kitty_protocol: true
-          }
-        '';
-      };
-    };
-
   programs.carapace = {
     enable = true;
     package = pkgs.carapace;
-    enableNushellIntegration = true;
     enableZshIntegration = true;
   };
 
@@ -230,12 +173,10 @@
     enable = true;
     package = pkgs.zoxide;
     enableZshIntegration = true;
-    enableNushellIntegration = true;
   };
 
   programs.starship = {
     enable = true;
-    enableNushellIntegration = true;
     enableZshIntegration = true;
     settings = {
       directory = {
