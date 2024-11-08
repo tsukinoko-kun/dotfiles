@@ -32,6 +32,7 @@
             pkgs.aldente
             pkgs.audacity
             pkgs.carapace
+            pkgs.checkstyle
             pkgs.cmake
             pkgs.cppcheck
             pkgs.duti
@@ -52,6 +53,7 @@
             pkgs.git-lfs
             pkgs.gnupg
             pkgs.go
+            pkgs.google-java-format
             pkgs.pkg-config
             pkgs.python3
             pkgs.golangci-lint
