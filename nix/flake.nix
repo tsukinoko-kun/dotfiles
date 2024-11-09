@@ -126,6 +126,7 @@
               "tidy-html5"
               "tsukinoko-kun/tap/portal"
               "tsukinoko-kun/tap/serve"
+              "tsukinoko-kun/tap/zzh"
             ];
             masApps = {
               "DaVinci Resolve" = 571213070;
