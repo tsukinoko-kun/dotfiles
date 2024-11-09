@@ -15,6 +15,7 @@
     "vim" = "nvim";
     "cd" = "z";
     "lg" = "lazygit";
+    "hms" = "darwin-rebuild switch --flake .#macbook --impure";
   };
   home.sessionVariables = {
     "CXX" = "/usr/bin/clang++";
