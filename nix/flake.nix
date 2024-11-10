@@ -54,7 +54,6 @@
             pkgs.go
             pkgs.google-java-format
             pkgs.pkg-config
-            pkgs.python3
             pkgs.golangci-lint
             pkgs.golines
             pkgs.graphviz
@@ -127,6 +126,7 @@
               "tsukinoko-kun/tap/portal"
               "tsukinoko-kun/tap/serve"
               "tsukinoko-kun/tap/zzh"
+              "uv"
             ];
             masApps = {
               "DaVinci Resolve" = 571213070;
