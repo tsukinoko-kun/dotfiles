@@ -109,11 +109,13 @@
             ];
             casks = [
               "arc"
+              "bartender"
               "beekeeper-studio"
               "corretto"
               "discord"
               "hot"
               "orbstack"
+              "spotify"
               "sublime-text"
               "termius"
               "vlc"
