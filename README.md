@@ -5,6 +5,8 @@ Neovim config: [tsukinoko-kun/nvim](https://github.com/tsukinoko-kun/nvim)
 ## Nix
 
 ```shell
+xcode-select --install
+softwareupdate --install-rosetta
 sh <(curl -L https://nixos.org/nix/install)
 nix-shell -p git --run 'git clone https://github.com/tsukinoko-kun/dotfiles.git ~/Git/dotfiles'
 nix run nix-darwin --extra-experimental-features 'nix-command flakes' -- switch --flake ~/Git/dotfiles/nix#macbook --impure
