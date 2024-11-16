@@ -29,12 +29,12 @@
           # $ nix-env -qaP | grep wget
           environment.systemPackages = [
             pkgs.air
-            pkgs.aldente
             pkgs.audacity
             pkgs.carapace
             pkgs.checkstyle
             pkgs.cmake
             pkgs.cppcheck
+            pkgs.dotnet-sdk_8
             pkgs.duti
             pkgs.neovim
             pkgs.nodejs_20
@@ -63,6 +63,7 @@
             pkgs.just
             pkgs.lame
             pkgs.lazygit
+            pkgs.luajit
             pkgs.luajitPackages.luacheck
             pkgs.markdownlint-cli
             pkgs.nixfmt-rfc-style
@@ -107,11 +108,13 @@
               "teamookla/speedtest"
             ];
             casks = [
+              "aldente"
               "arc"
               "bartender"
               "beekeeper-studio"
               "corretto"
               "discord"
+              "equinox"
               "hot"
               "orbstack"
               "raycast"
