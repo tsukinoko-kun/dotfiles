@@ -41,7 +41,6 @@
             pkgs.nodePackages_latest.jsonlint
             pkgs.mkalias
             pkgs.openssl_3_3
-            pkgs.raycast
             pkgs.ccls
             pkgs.coreutils
             pkgs.cppcheck
@@ -115,6 +114,7 @@
               "discord"
               "hot"
               "orbstack"
+              "raycast"
               "spotify"
               "sublime-text"
               "termius"
