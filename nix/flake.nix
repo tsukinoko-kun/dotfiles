@@ -84,6 +84,7 @@
             pkgs.stylua
             pkgs.templ
             pkgs.tmux
+            pkgs.typescript
             pkgs.typst
             pkgs.typstyle
             pkgs.typst-lsp
@@ -110,12 +111,12 @@
             casks = [
               "aldente"
               "arc"
-              "bartender"
               "beekeeper-studio"
               "corretto"
               "discord"
               "equinox"
               "hot"
+              "jordanbaird-ice"
               "orbstack"
               "raycast"
               "spotify"
@@ -131,7 +132,6 @@
               "tsukinoko-kun/tap/portal"
               "tsukinoko-kun/tap/serve"
               "tsukinoko-kun/tap/zzh"
-              "uv"
             ];
             masApps = {
               "DaVinci Resolve" = 571213070;
