@@ -130,6 +130,7 @@
               "ccache"
               "speedtest"
               "tidy-html5"
+              "tsukinoko-kun/tap/devhosts"
               "tsukinoko-kun/tap/portal"
               "tsukinoko-kun/tap/serve"
               "tsukinoko-kun/tap/zzh"
