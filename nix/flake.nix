@@ -127,6 +127,7 @@
               "zen-browser"
             ];
             brews = [
+              "ccache"
               "speedtest"
               "tidy-html5"
               "tsukinoko-kun/tap/portal"

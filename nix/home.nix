@@ -18,8 +18,8 @@
     "hms" = "darwin-rebuild switch --flake .#macbook --impure";
   };
   home.sessionVariables = {
-    "CXX" = "/usr/bin/clang++";
-    "CC" = "/usr/bin/clang";
+    "CXX" = "ccache /usr/bin/g++";
+    "CC" = "ccache /usr/bin/gcc";
     "EDITOR" = "nvim";
     "VISUAL" = "nvim";
     "TEMPL_EXPERIMENT" = "rawgo";
