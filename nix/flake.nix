@@ -44,7 +44,6 @@
             pkgs.ccls
             pkgs.coreutils
             pkgs.cppcheck
-            pkgs.ffmpeg_7-full
             pkgs.fzf
             pkgs.gh
             pkgs.git
@@ -77,7 +76,6 @@
             pkgs.rustup
             pkgs.sccache
             pkgs.shellcheck
-            pkgs.skimpdf
             pkgs.sshpass
             pkgs.starship
             pkgs.stylelint
@@ -119,6 +117,7 @@
               "jordanbaird-ice"
               "orbstack"
               "raycast"
+              "skim"
               "spotify"
               "sublime-text"
               "termius"
@@ -128,6 +127,7 @@
             ];
             brews = [
               "ccache"
+              "ffmpeg"
               "speedtest"
               "tidy-html5"
               "tsukinoko-kun/tap/devhosts"
