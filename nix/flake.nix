@@ -208,6 +208,11 @@
               show-thumbnail = true;
               type = "jpg";
             };
+            trackpad = {
+              TrackpadThreeFingerTapGesture = 0;
+              Clicking = false;
+
+            };
             menuExtraClock = {
               ShowAMPM = false;
               ShowDayOfWeek = true;
@@ -235,6 +240,7 @@
               NSAutomaticQuoteSubstitutionEnabled = false;
               NSAutomaticSpellingCorrectionEnabled = false;
               _HIHideMenuBar = false;
+              "com.apple.trackpad.forceClick" = false;
             };
             screensaver.askForPasswordDelay = 10;
           };
