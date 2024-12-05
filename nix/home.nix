@@ -16,6 +16,9 @@
     "cd" = "z";
     "lg" = "lazygit";
     "hms" = "darwin-rebuild switch --flake .#macbook --impure";
+    "ls" = "list";
+    "l" = "list -la";
+    "tree" = "list -t";
   };
   home.sessionVariables = {
     "CXX" = "ccache /usr/bin/g++";
@@ -169,6 +172,7 @@
   programs.zsh = {
     enable = true;
     syntaxHighlighting.enable = true;
+    enableCompletion = true;
     plugins = [
       {
         name = "vi-mode";

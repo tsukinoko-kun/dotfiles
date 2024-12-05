@@ -127,10 +127,12 @@
             ];
             brews = [
               "ccache"
+              "fastfetch"
               "ffmpeg"
               "speedtest"
               "tidy-html5"
               "tsukinoko-kun/tap/devhosts"
+              "tsukinoko-kun/tap/list"
               "tsukinoko-kun/tap/portal"
               "tsukinoko-kun/tap/serve"
               "tsukinoko-kun/tap/zzh"
@@ -175,7 +177,9 @@
 
           programs.zsh = {
             enable = true;
-            promptInit = "";
+            interactiveShellInit = ''
+              fastfetch
+            '';
           };
 
           users.users.frank.home = "/Users/frank";
