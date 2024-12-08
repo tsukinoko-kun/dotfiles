@@ -19,6 +19,7 @@
     "ls" = "list";
     "l" = "list -la";
     "tree" = "list -t";
+    "top" = "sudo mactop";
   };
   home.sessionVariables = {
     "CXX" = "ccache /usr/bin/g++";

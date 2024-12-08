@@ -33,6 +33,7 @@
             pkgs.carapace
             pkgs.checkstyle
             pkgs.cmake
+            pkgs.coursier
             pkgs.cppcheck
             pkgs.dotnet-sdk_8
             pkgs.duti
@@ -126,9 +127,11 @@
               "zen-browser"
             ];
             brews = [
+              "btop"
               "ccache"
               "fastfetch"
               "ffmpeg"
+              "mactop"
               "speedtest"
               "tidy-html5"
               "tsukinoko-kun/tap/devhosts"
