@@ -59,6 +59,7 @@
             pkgs.gum
             pkgs.imagemagick
             pkgs.jetbrains-mono
+            pkgs.nerd-fonts.jetbrains-mono
             pkgs.jq
             pkgs.just
             pkgs.lame
@@ -151,10 +152,6 @@
             onActivation.upgrade = true;
           };
 
-          fonts.packages = [
-            (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-          ];
-
           system.activationScripts.applications.text =
             let
               env = pkgs.buildEnv {
@@ -169,7 +166,7 @@
               rm -rf /Applications/Nix\ Apps
               mkdir -p /Applications/Nix\ Apps
               find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
-              while read src; do
+              while read -r src; do
                 app_name=$(basename "$src")
                 echo "copying $src" >&2
                 ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
