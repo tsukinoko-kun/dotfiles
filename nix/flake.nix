@@ -115,6 +115,7 @@
               "corretto"
               "discord"
               "equinox"
+              "gimp"
               "hot"
               "jordanbaird-ice"
               "orbstack"
@@ -125,9 +126,11 @@
               "termius"
               "vlc"
               "wezterm"
+              "zed"
               "zen-browser"
             ];
             brews = [
+              "act"
               "btop"
               "ccache"
               "fastfetch"
