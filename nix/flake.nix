@@ -196,6 +196,8 @@
                 "/Applications/WezTerm.app"
                 "/Applications/Discord.app"
                 "/Applications/Spotify.app"
+                "/Applications/Whisky.app"
+                "/Applications/OrbStack.app"
               ];
               magnification = true;
               largesize = 64;
