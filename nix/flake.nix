@@ -148,7 +148,6 @@
               "DaVinci Resolve" = 571213070;
               "Ausweis App" = 948660805;
               "Bitwarden" = 1352778147;
-              "Evertag" = 1594027661;
             };
             onActivation.cleanup = "zap";
             onActivation.autoUpdate = true;
@@ -181,6 +180,8 @@
           programs.zsh = {
             enable = true;
             interactiveShellInit = ''
+              /usr/bin/which -s cargo || rustup install stable; rustup default stable
+              clear
               fastfetch
             '';
           };

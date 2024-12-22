@@ -10,6 +10,7 @@
     "/opt/homebrew/sbin"
     "/Users/frank/Library/Application Support/JetBrains/Toolbox/scripts"
     "/Users/frank/go/bin"
+    "/Users/frank/.cargo/bin"
   ];
   home.shellAliases = {
     "vi" = "nvim";
