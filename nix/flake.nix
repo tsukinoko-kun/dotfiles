@@ -181,7 +181,7 @@
             enable = true;
             interactiveShellInit = ''
               /usr/bin/which -s cargo || (rustup install stable; rustup default stable)
-              /usr/bin/which -s git-stack || (cargo install git-stack git-branch-stash-cli)
+              /usr/bin/which -s git-stack || (cargo install git-stack git-branch-stash-cli; git stack alias --register)
               clear
               fastfetch
             '';
