@@ -115,6 +115,7 @@
               "corretto"
               "discord"
               "equinox"
+              "ghostty"
               "gimp"
               "hot"
               "jordanbaird-ice"
@@ -125,7 +126,6 @@
               "sublime-text"
               "termius"
               "vlc"
-              "wezterm"
               "zed"
               "zen-browser"
             ];
@@ -195,7 +195,7 @@
               mru-spaces = false;
               persistent-apps = [
                 "/Applications/Arc.app"
-                "/Applications/WezTerm.app"
+                "/Applications/Ghostty.app"
                 "/Applications/Discord.app"
                 "/Applications/Spotify.app"
                 "/Applications/Whisky.app"
