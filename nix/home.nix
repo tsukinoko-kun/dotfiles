@@ -56,12 +56,18 @@
       window-save-state = always
       mouse-hide-while-typing = true
       window-inherit-font-size = true
-      theme = dark:catppuccin-mocha,light:catppuccin-latte
+      theme = catppuccin-mocha
       window-vsync = true
       window-colorspace = display-p3
       copy-on-select = false
       shell-integration = zsh
+      macos-auto-secure-input = true
     '';
+  };
+
+  programs.fzf = {
+    enable = true;
+    enableZshIntegration = true;
   };
 
   programs.zsh = {
@@ -72,7 +78,14 @@
       {
         name = "vi-mode";
         src = pkgs.zsh-vi-mode;
-        file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
+      }
+      {
+        name = "zsh-fzf-history-search";
+        src = pkgs.zsh-fzf-history-search;
+      }
+      {
+        name = "zsh-forgit";
+        src = pkgs.zsh-forgit;
       }
     ];
   };
