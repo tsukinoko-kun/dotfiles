@@ -53,9 +53,10 @@
       font-size = 17
       window-height = 1000000
       window-width = 1000000
+      window-save-state = always
       mouse-hide-while-typing = true
       window-inherit-font-size = true
-      theme = catppuccin-mocha
+      theme = dark:catppuccin-mocha,light:catppuccin-latte
       window-vsync = true
       window-colorspace = display-p3
       copy-on-select = false
