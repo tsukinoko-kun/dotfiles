@@ -63,6 +63,11 @@
       copy-on-select = false
       shell-integration = zsh
       macos-auto-secure-input = true
+      macos-titlebar-style = tabs
+      keybind = super+l=goto_split:right
+      keybind = super+h=goto_split:left
+      keybind = super+j=goto_split:bottom
+      keybind = super+k=goto_split:top
     '';
   };
 
