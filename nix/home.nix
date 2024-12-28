@@ -58,6 +58,7 @@
       window-inherit-font-size = true
       theme = catppuccin-mocha
       window-vsync = true
+      window-padding-color = extend
       window-colorspace = display-p3
       copy-on-select = false
       shell-integration = zsh

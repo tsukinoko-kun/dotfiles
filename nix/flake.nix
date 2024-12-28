@@ -109,6 +109,9 @@
               "teamookla/speedtest"
             ];
             casks = [
+              "affinity-designer"
+              "affinity-photo"
+              # "affinity-publisher"
               "aldente"
               "arc"
               "beekeeper-studio"
@@ -116,7 +119,6 @@
               "discord"
               "equinox"
               "ghostty"
-              "gimp"
               "hot"
               "jordanbaird-ice"
               "orbstack"
@@ -200,6 +202,8 @@
                 "/Applications/Spotify.app"
                 "/Applications/Whisky.app"
                 "/Applications/OrbStack.app"
+                "/Applications/Affinity Photo 2.app"
+                "/Applications/Affinity Designer 2.app"
               ];
               magnification = true;
               largesize = 64;
