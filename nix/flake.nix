@@ -204,6 +204,7 @@
                 "/Applications/OrbStack.app"
                 "/Applications/Affinity Photo 2.app"
                 "/Applications/Affinity Designer 2.app"
+                "/Applications/DaVinci Resolve.app"
               ];
               magnification = true;
               largesize = 64;
