@@ -138,6 +138,7 @@
               "fastfetch"
               "ffmpeg"
               "mactop"
+              "prettierd"
               "speedtest"
               "tidy-html5"
               "tsukinoko-kun/tap/devhosts"
