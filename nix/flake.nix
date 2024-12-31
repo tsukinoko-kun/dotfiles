@@ -185,6 +185,8 @@
             interactiveShellInit = ''
               /usr/bin/which -s cargo || (rustup install stable; rustup default stable)
               /usr/bin/which -s git-stack || (cargo install git-stack git-branch-stash-cli; git stack alias --register)
+              bindkey '^R' fzf-history-widget
+              bindkey -M viins '^R' fzf-history-widget
               clear
               fastfetch
             '';
@@ -228,7 +230,6 @@
             trackpad = {
               TrackpadThreeFingerTapGesture = 0;
               Clicking = false;
-
             };
             menuExtraClock = {
               ShowAMPM = false;

@@ -84,14 +84,17 @@
       {
         name = "vi-mode";
         src = pkgs.zsh-vi-mode;
+        file = "share/zsh-vi-mode/zsh-vi-mode.plugin.zsh";
       }
       {
         name = "zsh-fzf-history-search";
         src = pkgs.zsh-fzf-history-search;
+        file = "share/zsh-fzf-history-search/zsh-fzf-history-search.plugin.zsh";
       }
       {
         name = "zsh-forgit";
         src = pkgs.zsh-forgit;
+        file = "share/zsh/zsh-forgit/forgit.plugin.zsh";
       }
     ];
   };
