@@ -1,4 +1,9 @@
-{ config, pkgs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   home.username = "frank";
@@ -34,6 +39,16 @@
     "XDG_DATA_HOME" = "/Users/frank/.local/share";
     "XDG_CACHE_HOME" = "/Users/frank/.cache";
     "XDG_STATE_HOME" = "/Users/frank/.local/state";
+  };
+  home.activation = {
+    setDefaultHandler = lib.hm.dag.entryAfter [ "desktop-startup" ] ''
+        /usr/bin/defaults write com.apple.LaunchServices/com.apple.launchservices.secure LSHandlers -array-add '{ LSHandlerContentType = "public.text"; LSHandlerPreferredVersions = { LSHandlerRoleAll = "-"; }; LSHandlerRoleAll = "dev.zed.Zed"; }'
+        /usr/bin/defaults write com.apple.LaunchServices/com.apple.launchservices.secure LSHandlers -array-add '{ LSHandlerContentType = "public.svg-image"; LSHandlerPreferredVersions = { LSHandlerRoleAll = "-"; }; LSHandlerRoleAll = "com.seriflabs.affinitydesigner2"; }'
+
+      # Reset Launch Services to apply changes immediately
+      /System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister \
+        -kill -r -domain local -domain user -domain system
+    '';
   };
 
   programs.home-manager.enable = true;
