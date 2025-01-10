@@ -33,6 +33,7 @@
             pkgs.carapace
             pkgs.checkstyle
             pkgs.cmake
+            pkgs.cobra-cli
             pkgs.coursier
             pkgs.cppcheck
             pkgs.dotnet-sdk_8
