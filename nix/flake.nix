@@ -149,7 +149,6 @@
               "tsukinoko-kun/tap/zzh"
             ];
             masApps = {
-              "DaVinci Resolve" = 571213070;
               "Ausweis App" = 948660805;
               "Bitwarden" = 1352778147;
             };
@@ -208,7 +207,7 @@
                 "/Applications/OrbStack.app"
                 "/Applications/Affinity Photo 2.app"
                 "/Applications/Affinity Designer 2.app"
-                "/Applications/DaVinci Resolve.app"
+                "/Applications/DaVinci Resolve/DaVinci Resolve.app"
               ];
               magnification = true;
               largesize = 64;
