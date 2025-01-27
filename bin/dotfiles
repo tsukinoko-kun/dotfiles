@@ -1,0 +1,38 @@
+#!/bin/sh
+
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 <command>"
+    echo "Available commands:"
+    echo "  sync      apply dotfiles to system"
+    echo "  install   install the dotfiles"
+    echo "  commit    apply system state to dotfiles"
+    echo "  push      push changes in dotfiles repo to remote"
+    exit 1
+fi
+
+DOTFILES_PATH="$(dirname "$(readlink -f "$0")")/.."
+
+case "$1" in
+    "sync")
+        (cd "$DOTFILES_PATH" && ./sync.sh)
+        ;;
+    "install")
+        (cd "$DOTFILES_PATH" && ./install.sh)
+        ;;
+    "commit")
+        (cd "$DOTFILES_PATH" && ./commit.sh)
+        ;;
+    "push")
+        (cd "$DOTFILES_PATH" && ./push.sh)
+        ;;
+    *)
+        echo "Unknown command: $1"
+        echo "Usage: $0 <command>"
+        echo "Available commands:"
+        echo "  sync      apply dotfiles to system"
+        echo "  install   install the dotfiles"
+        echo "  commit    apply system state to dotfiles"
+        echo "  push      push changes in dotfiles repo to remote"
+        exit 1
+        ;;
+esac
