@@ -10,4 +10,6 @@ if [ -f "$HOME/.zshrc" ]; then
     source "$HOME/.zshrc"
 fi
 /opt/homebrew/bin/brew bundle install --file=./Brewfile
+chmod go-w '/opt/homebrew/share'
+chmod -R go-w '/opt/homebrew/share/zsh'
 ./install_dotnet.sh

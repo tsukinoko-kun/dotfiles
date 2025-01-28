@@ -4,6 +4,12 @@ eval "$(starship init zsh)"
 . "$HOME/.cargo/env"
 
 export PATH="/Users/frank/.rustup/toolchains/stable-aarch64-apple-darwin/bin:$PNPM_HOME:/opt/homebrew/opt/openjdk/bin:$PATH:/Users/frank/Git/dotfiles/bin"
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+    autoload -Uz compinit
+    compinit
+fi
 
 alias vi=nvim
 alias vim=nvim
