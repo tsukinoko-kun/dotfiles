@@ -18,4 +18,3 @@ alias lg=lazygit
 alias ls=list
 alias l='list -la'
 alias tree='list -la'
-
