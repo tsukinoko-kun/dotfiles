@@ -13,4 +13,5 @@ fi
 chmod go-w '/opt/homebrew/share'
 chmod -R go-w '/opt/homebrew/share/zsh'
 ./install_dotnet.sh
+./install_rust.sh
 ./install_pinentry.sh

@@ -5,7 +5,7 @@ eval "$(starship init zsh)"
 
 export PATH="/Users/frank/.rustup/toolchains/stable-aarch64-apple-darwin/bin:$PNPM_HOME:/opt/homebrew/opt/openjdk/bin:$PATH:/Users/frank/Git/dotfiles/bin"
 if type brew &>/dev/null; then
-    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+    FPATH="$(brew --prefix)/share/zsh-completions:$FPATH:$HOME/.zfunc"
 
     autoload -Uz compinit
     compinit
