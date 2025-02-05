@@ -1,2 +1,4 @@
 jgit/
 .git/
+.android/
+cache/
