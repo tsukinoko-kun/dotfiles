@@ -9,9 +9,13 @@ fi
 if [ -f "$HOME/.zshrc" ]; then
     source "$HOME/.zshrc"
 fi
+if [ -f "$HOME/.zshenv" ]; then
+    source "$HOME/.zshenv"
+fi
 /opt/homebrew/bin/brew bundle install --file=./Brewfile
 chmod go-w '/opt/homebrew/share'
 chmod -R go-w '/opt/homebrew/share/zsh'
 ./install_dotnet.sh
-./install_rust.sh
+./install_go.sh
 ./install_pinentry.sh
+./install_rust.sh

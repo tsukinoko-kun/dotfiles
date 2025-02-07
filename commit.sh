@@ -20,6 +20,12 @@ else
     rm ./home/.zprofile || true
 fi
 
+if [ -f "$HOME/.zshenv" ]; then
+    cp "$HOME/.zshenv" ./home/.zshenv
+else
+    rm ./home/.zshenv || true
+fi
+
 if [ -f "$HOME/.ideavimrc" ]; then
     cp "$HOME/.ideavimrc" ./home/.ideavimrc
 else
