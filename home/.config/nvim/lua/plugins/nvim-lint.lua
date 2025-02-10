@@ -1,4 +1,5 @@
 local includes_one_of = require("utils").includes_one_of
+local contains = require("utils").contains
 
 local go_escape_analysis = {
     cmd = "go",
@@ -11,11 +12,20 @@ local go_escape_analysis = {
     parser = function(output, bufnr)
         local diagnostics = {}
         local words = { "moved", "escapes", "heap", "stack" }
+        local ignore =
+            { '"strings: illegal use of non-zero Builder copied by value" escapes to heap', '"err" escapes to heap' }
         local current_file = vim.fn.fnamemodify(vim.api.nvim_buf_get_name(bufnr), ":p")
 
         for _, line in ipairs(vim.split(output, "\n")) do
             local file, lnum, col, message = string.match(line, "([^:]+):(%d+):(%d+): (.+)")
-            if file and lnum and col and message and includes_one_of(message, words) then
+            if
+                file
+                and lnum
+                and col
+                and message
+                and includes_one_of(message, words)
+                and (not contains(message, ignore))
+            then
                 local abs_file = vim.fn.fnamemodify(file, ":p")
                 if abs_file == current_file then
                     table.insert(diagnostics, {

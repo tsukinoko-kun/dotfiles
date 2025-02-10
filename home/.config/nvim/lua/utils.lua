@@ -46,6 +46,15 @@ local function includes_one_of(str, list)
     return false
 end
 
+local function contains(value, list)
+    for _, v in ipairs(list) do
+        if v == value then
+            return true
+        end
+    end
+    return false
+end
+
 local function get_appearance_mode()
     -- Run osascript to get the appearance
     local handle =
@@ -67,5 +76,6 @@ return {
     table_set = table_set,
     file_exists = file_exists,
     includes_one_of = includes_one_of,
+    contains = contains,
     get_appearance_mode = get_appearance_mode,
 }
