@@ -74,6 +74,7 @@ return {
             root_dir = function(fname)
                 local util = require("lspconfig.util")
                 return util.root_pattern(
+                    "tsconfig.json",
                     "turbo.json",
                     "docker-compose.yml",
                     ".eslintrc.cjs",
