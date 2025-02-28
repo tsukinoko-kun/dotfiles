@@ -2,3 +2,4 @@ jgit/
 .git/
 .android/
 cache/
+swiftpm/
