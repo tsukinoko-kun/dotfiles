@@ -355,6 +355,10 @@ map("n", "<leader>lci", "<cmd>lua require('telescope.builtin').lsp_incoming_call
     desc = "Hover",
 })
 
+-- indentation
+map("v", "<", "<gv")
+map("v", ">", ">gv")
+
 -- ect
 map("n", "<leader>u", "<cmd>UndotreeToggle<cr><cmd>UndotreeFocus<cr>", {
     desc = "Toggle undo tree",
