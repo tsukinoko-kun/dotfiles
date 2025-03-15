@@ -29,7 +29,19 @@ fi
 if [ -f "$HOME/.ideavimrc" ]; then
     cp "$HOME/.ideavimrc" ./home/.ideavimrc
 else
-    rm ./home/.zprofile || true
+    rm ./home/.ideavimrc || true
+fi
+
+if [ -f "$HOME/.gitconfig" ]; then
+    cp "$HOME/.gitconfig" ./home/.gitconfig
+else
+    rm ./home/.gitconfig || true
+fi
+
+if [ -f "$HOME/.gitignore" ]; then
+    cp "$HOME/.gitignore" ./home/.gitignore
+else
+    rm ./home/.gitignore || true
 fi
 
 git add ./home/
