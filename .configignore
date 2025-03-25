@@ -1,4 +1,5 @@
 jgit/
+tool_state
 .git/
 .android/
 cache/
