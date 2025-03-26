@@ -26,7 +26,11 @@ return {
         },
         config = true,
     },
-    "ThePrimeagen/harpoon", -- for managing multiple buffers
+    {
+        "ThePrimeagen/harpoon",
+        branch = "harpoon2",
+        dependencies = { "nvim-lua/plenary.nvim" },
+    },
     {
         "jvgrootveld/telescope-zoxide",
         dependencies = {
