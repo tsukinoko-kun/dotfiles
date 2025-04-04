@@ -66,7 +66,8 @@ return {
             sass = { "stylelint" },
             less = { "stylelint" },
             go = {
-                "golangcilint" --[[, "go_escape_analysis"]],
+                "golangcilint",
+                "go_escape_analysis",
             },
             c = { "cppcheck" },
             nix = { "nix" },

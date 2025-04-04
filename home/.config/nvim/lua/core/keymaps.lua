@@ -467,10 +467,6 @@ map("n", "<C-k>", ":cprevious<CR>", {
     desc = "Previous quickfix list item",
 })
 
-map("n", "<leader>s", "<cmd>SymbolsOutline<CR>", {
-    desc = "LSP symbols",
-})
-
 -- spellcheck
 map("n", "<leader>ct", function()
     vim.opt.spell = not vim.opt.spell
