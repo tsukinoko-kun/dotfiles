@@ -54,10 +54,10 @@ map("n", "Y", '"_y$', {
 map("n", "Y", '"_y$"_d$', {
     desc = "Yank to end of line and delete to end of line",
 })
-map("n", "xx", "ddp", {
+map("n", "xx", "dd", {
     desc = "Yank whole line and delete it",
 })
-map("n", "X", "ddP", {
+map("n", "X", "D", {
     desc = "Yank whole line and delete it",
 })
 
@@ -466,6 +466,49 @@ map("n", "<C-j>", ":cnext<CR>", {
 map("n", "<C-k>", ":cprevious<CR>", {
     desc = "Previous quickfix list item",
 })
+
+-- code companion
+map("v", "<leader>äe", function()
+    local companion = require("codecompanion")
+    companion.inline({
+        adapter = "gemini",
+        prompt = "Explain the selected code to me",
+        range = { vim.fn.line("'<"), vim.fn.line("'>") },
+    })
+end, {
+    desc = "Explain selected code",
+})
+map("v", "<leader>äp", function()
+    local companion = require("codecompanion")
+    local range = { vim.fn.line("'<"), vim.fn.line("'>") }
+    vim.ui.input({ prompt = "Prompt: " }, function(input_prompt)
+        if input_prompt and #input_prompt > 0 then
+            companion.inline({
+                adapter = "gemini",
+                prompt = input_prompt,
+                range = range,
+            })
+        else
+            print("CodeCompanion: No prompt provided.")
+        end
+    end)
+end, {
+    desc = "Custom inline prompt",
+})
+
+map("n", "<leader>äp", function()
+    local companion = require("codecompanion")
+    vim.ui.input({ prompt = "Prompt: " }, function(input_prompt)
+        if input_prompt and #input_prompt > 0 then
+            companion.inline({
+                adapter = "gemini",
+                prompt = input_prompt,
+            })
+        else
+            print("CodeCompanion: No prompt provided.")
+        end
+    end)
+end, { desc = "Custom inline prompt" })
 
 -- spellcheck
 map("n", "<leader>ct", function()

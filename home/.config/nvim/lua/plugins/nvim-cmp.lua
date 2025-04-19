@@ -36,6 +36,7 @@ return {
                 }),
                 -- sources for autocompletion
                 sources = cmp.config.sources({
+                    { name = "codecompanion" }, -- olimorris/codecompanion.nvim
                     { name = "nvim_lsp" }, -- lsp
                     { name = "luasnip" }, -- snippets
                     { name = "path" }, -- file system paths
