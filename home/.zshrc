@@ -57,3 +57,11 @@ valgrind() {
     # Wait for leaks to finish
     wait $leaks_pid
 }
+
+source $(/opt/homebrew/bin/brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source $(/opt/homebrew/bin/brew --prefix)/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
