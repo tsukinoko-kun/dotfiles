@@ -44,5 +44,3 @@
     autoSquash = true
     autoStash = true
     updateRefs = true
-[gitbutler]
-	aiModelProvider = openai

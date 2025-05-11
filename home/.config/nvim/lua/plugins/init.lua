@@ -28,7 +28,7 @@ return {
     },
     {
         "ThePrimeagen/harpoon",
-        branch = "harpoon2",
+        -- branch = "harpoon2", TODO: update at some point
         dependencies = { "nvim-lua/plenary.nvim" },
     },
     {

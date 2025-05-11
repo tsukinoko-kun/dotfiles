@@ -12,7 +12,6 @@
     "bindings": {
       "p": "editor::Paste",
       "x": "editor::Cut",
-      "d": "editor::Delete",
       ">": "editor::Indent",
       "<": "editor::AutoIndent"
     }
@@ -30,7 +29,8 @@
       "d b": "editor::DeleteToPreviousSubwordStart",
       "x x": "editor::CutToEndOfLine",
       "x $": "editor::CutToEndOfLine",
-      "x l": "editor::Cut"
+      "x l": "editor::Cut",
+      "space f f": "file_finder::Toggle"
     }
   }
 ]

@@ -61,7 +61,7 @@ end
 
 return {
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         config = true,
     },
 
@@ -101,21 +101,12 @@ return {
     },
 
     {
-        "williamboman/mason-lspconfig.nvim",
+        "mason-org/mason-lspconfig.nvim",
+        dependencies = { "neovim/nvim-lspconfig" },
         config = function()
             local mason_lspconfig = require("mason-lspconfig")
-            mason_lspconfig.setup_handlers({
-                function(server_name)
-                    if not has_value(setup_lsp, server_name) then
-                        table.insert(setup_lsp, server_name)
-                        require("lspconfig")[server_name].setup({
-                            capabilities = require("cmp_nvim_lsp").default_capabilities(),
-                            on_attach = on_attach_default,
-                        })
-                    end
-                end,
-            })
             mason_lspconfig.setup({
+                automatic_enable = true,
                 -- list of servers for mason to install
                 ensure_installed = {
                     "astro", -- astro
@@ -147,8 +138,8 @@ return {
     {
         "neovim/nvim-lspconfig",
         dependencies = {
-            "williamboman/mason.nvim",
-            "williamboman/mason-lspconfig.nvim",
+            "mason-org/mason.nvim",
+            "mason-org/mason-lspconfig.nvim",
             "jay-babu/mason-nvim-dap.nvim",
             "hrsh7th/cmp-nvim-lsp",
         },
@@ -168,10 +159,10 @@ return {
             end
 
             -- gleam language server
-            lspconfig.gleam.setup({})
+            vim.lsp.config("gleam", {})
 
             -- configure lua server (with special settings)
-            lspconfig.lua_ls.setup({
+            vim.lsp.config("lua_ls", {
                 capabilities = capabilities,
                 on_attach = on_attach_default,
                 filetypes = { "lua" },
@@ -202,7 +193,7 @@ return {
                 },
             })
 
-            lspconfig.gopls.setup({
+            vim.lsp.config("gopls", {
                 capabilities = capabilities,
                 on_attach = on_attach_default,
                 cmd = { "gopls" },
@@ -227,13 +218,13 @@ return {
                 },
             })
 
-            lspconfig.htmx.setup({
+            vim.lsp.config("htmx", {
                 on_attach = on_attach_default,
                 capabilities = capabilities,
                 filetypes = { "html", "templ" },
             })
 
-            lspconfig.jdtls.setup({
+            vim.lsp.config("jdtls", {
                 capabilities = capabilities,
                 on_attach = on_attach_default,
                 cmd = { "jdtls" },
@@ -316,7 +307,7 @@ return {
             })
 
             -- configure c/c++ server
-            lspconfig.ccls.setup({
+            vim.lsp.config("ccls", {
                 filetypes = { "c", "cpp", "cc", "objc", "objcpp", "opencl" },
                 root_dir = function(fname)
                     return util.root_pattern(

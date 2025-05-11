@@ -7,38 +7,28 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "completions": {
-    "lsp": true,
-    "lsp_fetch_timeout_ms": 2000
-  },
-  "edit_predictions": {
-    "mode": "eager",
-    "enabled_in_text_threads": true
-  },
-  "agent": {
-    "default_profile": "minimal",
-    "always_allow_tool_actions": false,
+  "assistant": {
     "enabled": true,
     "version": "2",
     "default_model": {
       "provider": "google",
-      "model": "gemini-2.5-pro-preview-03-25"
+      "model": "gemini-2.5-pro-exp-03-25"
     },
     "commit_message_model": {
       "provider": "google",
-      "model": "gemini-2.5-pro-preview-03-25"
+      "model": "gemini-2.5-pro-exp-03-25"
     },
     "thread_summary_model": {
       "provider": "google",
-      "model": "gemini-2.5-pro-preview-03-25"
+      "model": "gemini-2.5-pro-exp-03-25"
     },
     "inline_assistant_model": {
       "provider": "google",
-      "model": "gemini-2.0-flash"
+      "model": "gemini-2.5-flash-preview-04-17"
     }
   },
   "features": {
-    "edit_prediction_provider": "supermaven"
+    "edit_prediction_provider": "zed"
   },
   "vim_mode": true,
   "vim": {
@@ -54,7 +44,7 @@
   //   "dark": "Catppuccin Mocha"
   // },
   "telemetry": {
-    "diagnostics": true,
-    "metrics": true
+    "diagnostics": false,
+    "metrics": false
   }
 }

@@ -537,7 +537,7 @@ map("n", "<leader>cl", function()
         sorter = conf.generic_sorter({}),
         attach_mappings = function(prompt_bufnr)
             actions.select_default:replace(function()
-                actions.close(prompt_bufnr)
+                actions.close()
                 local selection = action_state.get_selected_entry()
                 vim.opt.spelllang = selection[1]
                 print("Spellcheck language set to: " .. selection[1])

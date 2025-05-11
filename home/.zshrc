@@ -2,6 +2,8 @@ export XDG_CONFIG_HOME="/Users/frank/.config"
 export XDG_DATA_HOME="/Users/frank/.local/share"
 export XDG_CACHE_HOME="/Users/frank/.cache"
 export XDG_STATE_HOME="/Users/frank/.local/state"
+export DOTNET_ROOT="/opt/homebrew/opt/dotnet/libexec"
+
 
 export PATH="$HOME/development/flutter/bin:$XDG_DATA_HOME/go/bin:/Users/frank/.rustup/toolchains/stable-aarch64-apple-darwin/bin:$PNPM_HOME:/opt/homebrew/opt/openjdk/bin:$PATH:/Users/frank/Git/dotfiles/bin:/Users/frank/.dotnet/tools"
 export VCPKG_ROOT="/Users/frank/Git/vcpkg"
@@ -17,6 +19,7 @@ if type /opt/homebrew/bin/brew &>/dev/null; then
 
     autoload -Uz compinit
     compinit
+    source <(jj util completion zsh)
 fi
 
 # gcc_version=$(/opt/homebrew/bin/brew ls --versions gcc | awk '{print $2}' | sort -V | tail -n 1)
