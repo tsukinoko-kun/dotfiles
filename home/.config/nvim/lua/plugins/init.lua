@@ -28,8 +28,12 @@ return {
     },
     {
         "ThePrimeagen/harpoon",
-        -- branch = "harpoon2", TODO: update at some point
+        branch = "harpoon2",
         dependencies = { "nvim-lua/plenary.nvim" },
+        setup = function()
+            local harpoon = require("harpoon")
+            harpoon:setup()
+        end,
     },
     {
         "jvgrootveld/telescope-zoxide",
@@ -37,7 +41,6 @@ return {
             { "nvim-telescope/telescope.nvim" },
         },
     }, -- zoxide integration
-    -- "hrsh7th/cmp-buffer",
     {
         "folke/which-key.nvim",
         config = true,

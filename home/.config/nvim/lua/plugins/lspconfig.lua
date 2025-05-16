@@ -1,14 +1,3 @@
-local setup_lsp = { "lua_ls", "gopls", "htmx", "jdtls", "astro", "tailwindcss", "ccls" }
-
-local function has_value(tab, val)
-    for _, value in ipairs(tab) do
-        if value == val then
-            return true
-        end
-    end
-    return false
-end
-
 -- enable keybinds only for when lsp server available
 local on_attach_default = function(client, bufnr)
     if client.server_capabilities.inlayHintProvider then
@@ -41,8 +30,6 @@ local on_attach_default = function(client, bufnr)
     map("n", "<leader>lr", vim.lsp.buf.rename, { desc = "Rename symbol" })
     map("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Show diagnostics for current line" })
     map("n", "<leader>lD", "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = "Show diagnostics for current buffer" })
-    map("n", "<leader>lgD", vim.diagnostic.goto_prev, { desc = "Jump to previous diagnostic" })
-    map("n", "<leader>lgd", vim.diagnostic.goto_next, { desc = "Jump to next diagnostic" })
     map("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format buffer" })
 
     -- typescript specific keymaps (e.g. rename file and update imports)
@@ -63,6 +50,87 @@ return {
     {
         "mason-org/mason.nvim",
         config = true,
+    },
+    {
+        "mason-org/mason-lspconfig.nvim",
+        dependencies = { "mason-org/mason.nvim" },
+        opts = {
+            automatic_enable = false,
+            -- list of servers for mason to install
+            ensure_installed = {
+                "astro", -- astro
+                "svelte", -- svelte
+                "gopls", -- go
+                "templ", -- html templating
+                "htmx", -- htmx
+                "html", -- html
+                "cssls", -- css, scss, less
+                "tailwindcss", -- tailwind
+                "lua_ls", -- lua
+                "jsonls", -- json
+                "marksman", -- markdown
+                "yamlls", -- yaml
+                "lemminx", -- xml
+                "jdtls", -- java
+                "biome", -- JS Linter
+                "rust_analyzer", -- Rust
+            },
+            -- auto-install configured servers (with lspconfig)
+            automatic_installation = true, -- not the same as :ensure_installed
+        },
+    },
+
+    {
+        "neovim/nvim-lspconfig",
+        dependencies = {
+            "saghen/blink.cmp",
+            "mason-org/mason-lspconfig.nvim",
+            {
+                "folke/lazydev.nvim",
+                ft = "lua", -- only load on lua files
+                opts = {
+                    library = {
+                        -- See the configuration section for more details
+                        -- Load luvit types when the `vim.uv` word is found
+                        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+                    },
+                },
+            },
+        },
+        config = function()
+            local lspconfig = require("lspconfig")
+            vim.filetype.add({
+                extension = { templ = "templ", razor = "razor", cshtml = "cshtml" },
+            })
+            local signs = { Error = "", Warn = "", Hint = "", Info = "" }
+            for type, icon in pairs(signs) do
+                local hl = "DiagnosticSign" .. type
+                vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+            end
+            local capabilities = require("blink.cmp").get_lsp_capabilities()
+            lspconfig.lua_ls.setup({ capabilities = capabilities, on_attach = on_attach_default })
+            lspconfig.gopls.setup({
+                capabilities = capabilities,
+                on_attach = on_attach_default,
+                settings = {
+                    gopls = {
+                        completeUnimported = true,
+                        analyses = {
+                            unusedparams = true,
+                        },
+                        hints = {
+                            assignVariableTypes = true,
+                            compositeLiteralFields = true,
+                            compositeLiteralTypes = true,
+                            constantValues = true,
+                            functionTypeParameters = true,
+                            parameterNames = true,
+                            rangeVariableTypes = true,
+                        },
+                    },
+                },
+            })
+        end,
     },
 
     {
@@ -98,266 +166,5 @@ return {
                 },
             },
         },
-    },
-
-    {
-        "mason-org/mason-lspconfig.nvim",
-        dependencies = { "neovim/nvim-lspconfig" },
-        config = function()
-            local mason_lspconfig = require("mason-lspconfig")
-            mason_lspconfig.setup({
-                automatic_enable = true,
-                -- list of servers for mason to install
-                ensure_installed = {
-                    "astro", -- astro
-                    "svelte", -- svelte
-                    "gopls", -- go
-                    "templ", -- html templating
-                    "htmx", -- htmx
-                    "html", -- html
-                    "cssls", -- css, scss, less
-                    "tailwindcss", -- tailwind
-                    "lua_ls", -- lua
-                    "jsonls", -- json
-                    "marksman", -- markdown
-                    "yamlls", -- yaml
-                    "lemminx", -- xml
-                    "jdtls", -- java
-                    "biome", -- JS Linter
-                    "rust_analyzer", -- Rust
-                },
-                -- auto-install configured servers (with lspconfig)
-                automatic_installation = true, -- not the same as :ensure_installed
-            })
-            vim.filetype.add({
-                extension = { templ = "templ", razor = "razor", cshtml = "cshtml" },
-            })
-        end,
-    },
-
-    {
-        "neovim/nvim-lspconfig",
-        dependencies = {
-            "mason-org/mason.nvim",
-            "mason-org/mason-lspconfig.nvim",
-            "jay-babu/mason-nvim-dap.nvim",
-            "hrsh7th/cmp-nvim-lsp",
-        },
-        config = function()
-            local util = require("lspconfig.util")
-            local lspconfig = require("lspconfig")
-            local cmp_nvim_lsp = require("cmp_nvim_lsp")
-
-            -- used to enable autocompletion (assign to every lsp server config)
-            local capabilities = cmp_nvim_lsp.default_capabilities()
-
-            -- Change the Diagnostic symbols in the sign column (gutter)
-            local signs = { Error = "", Warn = "", Hint = "", Info = "" }
-            for type, icon in pairs(signs) do
-                local hl = "DiagnosticSign" .. type
-                vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-            end
-
-            -- gleam language server
-            vim.lsp.config("gleam", {})
-
-            -- configure lua server (with special settings)
-            vim.lsp.config("lua_ls", {
-                capabilities = capabilities,
-                on_attach = on_attach_default,
-                filetypes = { "lua" },
-                settings = {
-                    -- custom settings for lua
-                    Lua = {
-                        runtime = {
-                            version = "LuaJIT",
-                        },
-                        hint = {
-                            enable = true,
-                        },
-                        -- make the language server recognize "vim" global
-                        diagnostics = {
-                            globals = { "vim", "Yab" },
-                        },
-                        workspace = {
-                            checkThirdParty = false, -- disable checking for third party libraries
-                            -- make language server aware of runtime files
-                            library = {
-                                vim.env.VIMRUNTIME,
-                                vim.fn.expand("$VIMRUNTIME/lua"),
-                                vim.fn.stdpath("config") .. "/lua",
-                                vim.fn.expand("$XDG_CONFIG_HOME/yab/lib"),
-                            },
-                        },
-                    },
-                },
-            })
-
-            vim.lsp.config("gopls", {
-                capabilities = capabilities,
-                on_attach = on_attach_default,
-                cmd = { "gopls" },
-                filetypes = { "go", "mod" },
-                root_dir = lspconfig.util.root_pattern("go.work", "go.mod", ".git"),
-                settings = {
-                    gopls = {
-                        completeUnimported = true,
-                        analyses = {
-                            unusedparams = true,
-                        },
-                        hints = {
-                            assignVariableTypes = true,
-                            compositeLiteralFields = true,
-                            compositeLiteralTypes = true,
-                            constantValues = true,
-                            functionTypeParameters = true,
-                            parameterNames = true,
-                            rangeVariableTypes = true,
-                        },
-                    },
-                },
-            })
-
-            vim.lsp.config("htmx", {
-                on_attach = on_attach_default,
-                capabilities = capabilities,
-                filetypes = { "html", "templ" },
-            })
-
-            vim.lsp.config("jdtls", {
-                capabilities = capabilities,
-                on_attach = on_attach_default,
-                cmd = { "jdtls" },
-                filetypes = { "java" },
-                root_dir = lspconfig.util.root_pattern("pom.xml", "build.gradle", ".git"),
-                init_options = {
-                    bundles = {},
-                },
-                settings = {
-                    inlayHints = {
-                        parameterNames = {
-                            enabled = "all",
-                        },
-                    },
-                    java = {
-                        signatureHelp = { enabled = true },
-                        eclipse = {
-                            downloadSources = true,
-                        },
-                        configuration = {
-                            updateBuildConfiguration = "interactive",
-                        },
-                        maven = {
-                            downloadSources = true,
-                        },
-                        implementationsCodeLens = {
-                            enabled = true,
-                        },
-                        referencesCodeLens = {
-                            enabled = true,
-                        },
-                        references = {
-                            includeDecompiledSources = true,
-                        },
-                        inlayHints = {
-                            parameterNames = {
-                                enabled = "all", -- literals, all, none
-                            },
-                        },
-                        format = {
-                            enabled = true,
-                        },
-                        contentProvider = { preferred = "fernflower" },
-                    },
-                },
-            })
-
-            -- configure astro server
-            lspconfig["astro"].setup({
-                capabilities = capabilities,
-                on_attach = on_attach_default,
-                filetypes = { "astro" },
-                settings = {
-                    astro = {
-                        cmd = { "astro-ls", "--stdio" },
-                        filetypes = { "astro" },
-                        init_options = {
-                            configuration = {},
-                            typescript = {
-                                serverPath = "",
-                            },
-                        },
-                    },
-                },
-            })
-
-            -- configure tailwind server
-            lspconfig["tailwindcss"].setup({
-                capabilities = capabilities,
-                on_attach = on_attach_default,
-                filetypes = { "astro", "templ", "html", "javascriptreact", "typescriptreact", "svelte", "eruby" },
-                init_options = { userLanguages = { templ = "html" } },
-                settings = {
-                    tailwindCSS = {
-                        files = {
-                            exclude = { "node_modules", ".git", "dist", "build", ".cache", ".next" },
-                        },
-                    },
-                },
-            })
-
-            -- configure c/c++ server
-            vim.lsp.config("ccls", {
-                filetypes = { "c", "cpp", "cc", "objc", "objcpp", "opencl" },
-                root_dir = function(fname)
-                    return util.root_pattern(
-                        "compile_commands.json",
-                        "compile_flags.txt",
-                        ".git",
-                        "WORKSPACE",
-                        "WORKSPACE.bazel"
-                    )(fname) or util.find_git_ancestor(fname)
-                end,
-                init_options = {
-                    cache = {
-                        directory = ".ccls-cache",
-                    },
-                },
-                capabilities = capabilities,
-                on_attach = on_attach_default,
-            })
-
-            -- lspconfig.typst_lsp.setup({
-            --     settings = {
-            --         exportPdf = "never", -- Choose onType, onSave or never.
-            --         -- serverPath = "" -- Normally, there is no need to uncomment it.
-            --     },
-            -- })
-        end,
-    },
-
-    {
-        "scalameta/nvim-metals",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "neovim/nvim-lspconfig",
-        },
-        ft = { "scala", "sbt" },
-        opts = function()
-            local metals_config = require("metals").bare_config()
-            metals_config.on_attach = on_attach_default
-
-            return metals_config
-        end,
-        config = function(self, metals_config)
-            local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
-            vim.api.nvim_create_autocmd("FileType", {
-                pattern = self.ft,
-                callback = function()
-                    require("metals").initialize_or_attach(metals_config)
-                end,
-                group = nvim_metals_group,
-            })
-        end,
     },
 }

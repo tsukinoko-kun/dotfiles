@@ -67,7 +67,7 @@ return {
             less = { "stylelint" },
             go = {
                 "golangcilint",
-                "go_escape_analysis",
+                -- "go_escape_analysis",
             },
             c = { "cppcheck" },
             nix = { "nix" },
@@ -75,7 +75,7 @@ return {
             objc = { "cppcheck" },
             -- java = { "checkstyle" },
         }
-        lint.linters.go_escape_analysis = go_escape_analysis
+        -- lint.linters.go_escape_analysis = go_escape_analysis
 
         local lint_augroup = vim.api.nvim_create_augroup("lint", { clear = true })
         vim.api.nvim_create_autocmd({
