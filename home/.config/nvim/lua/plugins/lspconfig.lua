@@ -130,6 +130,19 @@ return {
                     },
                 },
             })
+            lspconfig.tailwindcss.setup({
+                capabilities = capabilities,
+                on_attach = on_attach_default,
+                filetypes = { "astro", "templ", "html", "javascriptreact", "typescriptreact", "svelte", "eruby" },
+                init_options = { userLanguages = { templ = "html" } },
+                settings = {
+                    tailwindCSS = {
+                        files = {
+                            exclude = { "node_modules", ".git", "dist", "build", ".cache", ".next" },
+                        },
+                    },
+                },
+            })
         end,
     },
 
