@@ -1,0 +1,172 @@
+:set number
+:set number relativenumber
+:set clipboard=unnamed
+:set autoindent
+set scrolloff=8
+
+" Plugins
+Plug 'https://github.com/tpope/vim-commentary'
+Plug 'https://github.com/preservim/nerdtree'
+Plug 'https://github.com/liuchengxu/vim-which-key'
+" Plug 'https://github.com/unblevable/quick-scope'
+
+" Soft wrap navigation
+nnoremap <expr> <Up> (v:count == 0 ? 'gk' : 'k')
+nnoremap <expr> <Down> (v:count == 0 ? 'gj' : 'j')
+vnoremap <expr> <Up> (v:count == 0 ? 'gk' : 'k')
+vnoremap <expr> <Down> (v:count == 0 ? 'gj' : 'j')
+
+" Explorer
+nnoremap - :NERDTreeFocus<CR>
+
+" remove highlight on escape (additionally to default <esc> behaviour)
+nnoremap <esc> :noh<cr><esc>
+
+" Write all buffers
+inoremap <C-s> <cmd>wa!<CR>
+nnoremap <C-s> <cmd>wa!<CR>
+
+" Quit all buffers
+inoremap <C-Q> <cmd>qa<CR>
+nnoremap <C-Q> <cmd>qa<CR>
+
+" Quit buffer
+inoremap <C-q> <cmd>q<CR>
+nnoremap <C-q> <cmd>q<CR>
+
+" Delete without yanking
+vnoremap d "_d
+nnoremap dd "_dd
+nnoremap D "_d$
+nnoremap Y "_y$
+
+" Yank to end of line and delete to end of line
+nnoremap Y "_y$"_d$
+
+" Yank whole line and delete it
+nnoremap xx ddp
+nnoremap X ddP
+
+" Cut out to end of line
+nnoremap x$ d$
+nnoremap x% d%
+nnoremap x0 d0
+nnoremap x^ d^
+
+" Cut out to beginning of paragraph
+nnoremap x{ d{
+nnoremap x} d}
+
+" Cut out to previous word
+nnoremap xb db
+nnoremap xe de
+
+" Cut out to previous character
+nnoremap xF dF
+nnoremap xf df
+nnoremap xG dG
+nnoremap xh dh
+nnoremap xj dj
+nnoremap xk dk
+nnoremap xl dl
+nnoremap xT dT
+nnoremap xt dt
+nnoremap xw dw
+nnoremap x[ d[
+nnoremap x] d]
+
+" Cut out around word
+nnoremap xaw daw
+nnoremap xap dap
+nnoremap xa{ da{
+nnoremap xa[ da[
+nnoremap xa( da(
+nnoremap xa" da"
+nnoremap xa' da'
+nnoremap xa< da<
+
+" Cut out to last change
+nnoremap xg dg
+nnoremap xiw diw
+nnoremap xip dip
+nnoremap xi{ di{
+nnoremap xi[ di[
+nnoremap xi( di(
+nnoremap xi" di"
+nnoremap xi' di'
+nnoremap xi< di<
+
+" stop p from yanking selected text
+vnoremap p "_dP
+
+" stop c from yanking
+nnoremap c "_c
+nnoremap C "_c$
+vnoremap c "_c
+vnoremap C "_c$
+nnoremap c$ "_c$
+nnoremap c% "_c%
+nnoremap c0 "_c0
+nnoremap c^ "_c^
+nnoremap c{ "_c{
+nnoremap c} "_c}
+nnoremap cb "_cb
+nnoremap ce "_ce
+nnoremap cF "_cF
+nnoremap cf "_cf
+nnoremap cG "_cG
+nnoremap ch "_ch
+nnoremap cj "_cj
+nnoremap ck "_ck
+nnoremap cl "_cl
+nnoremap cT "_cT
+nnoremap ct "_ct
+nnoremap cw "_cw
+nnoremap c[ "_c[
+nnoremap c] "_c]
+nnoremap ca "_ca
+nnoremap cg "_cg
+nnoremap ci "_ci
+
+" stop d from yanking
+nnoremap d "_d
+nnoremap D "_d$
+vnoremap d "_d
+vnoremap D "_d$
+nnoremap d$ "_d$
+nnoremap d% "_d%
+nnoremap d0 "_d0
+nnoremap d^ "_d^
+nnoremap d{ "_d{
+nnoremap d} "_d}
+nnoremap db "_db
+nnoremap de "_de
+nnoremap dF "_dF
+nnoremap df "_df
+nnoremap dG "_dG
+nnoremap dh "_dh
+nnoremap dj "_dj
+nnoremap dk "_dk
+nnoremap dl "_dl
+nnoremap dT "_dT
+nnoremap dt "_dt
+nnoremap dw "_dw
+nnoremap d[ "_d[
+nnoremap d] "_d]
+nnoremap da "_da
+nnoremap dg "_dg
+nnoremap di "_di
+
+" Prime
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+nnoremap <c-d> <c-d>zz
+nnoremap <c-u> <c-u>zz
+nnoremap n nzzzv
+nnoremap N Nzzzv
+nnoremap J mzJ`z
+
+" smart q
+nnoremap Q @q
+
+set clipboard^=ideaput

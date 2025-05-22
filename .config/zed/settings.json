@@ -1,0 +1,60 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "completions": {
+    "lsp": true,
+    "lsp_fetch_timeout_ms": 2000
+  },
+  "edit_predictions": {
+    "mode": "eager",
+    "enabled_in_text_threads": true
+  },
+  "agent": {
+    "default_profile": "minimal",
+    "always_allow_tool_actions": false,
+    "enabled": true,
+    "version": "2",
+    "default_model": {
+      "provider": "google",
+      "model": "gemini-2.5-pro-preview-03-25"
+    },
+    "commit_message_model": {
+      "provider": "google",
+      "model": "gemini-2.5-pro-preview-03-25"
+    },
+    "thread_summary_model": {
+      "provider": "google",
+      "model": "gemini-2.5-pro-preview-03-25"
+    },
+    "inline_assistant_model": {
+      "provider": "google",
+      "model": "gemini-2.0-flash"
+    }
+  },
+  "features": {
+    "edit_prediction_provider": "supermaven"
+  },
+  "vim_mode": true,
+  "vim": {
+    "use_system_clipboard": "always"
+  },
+  "format_on_save": "on",
+  "relative_line_numbers": true,
+  "ui_font_size": 16,
+  "buffer_font_size": 16,
+  // "theme": {
+  //   "mode": "system",
+  //   "light": "One Light",
+  //   "dark": "Catppuccin Mocha"
+  // },
+  "telemetry": {
+    "diagnostics": true,
+    "metrics": true
+  }
+}

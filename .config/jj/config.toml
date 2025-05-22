@@ -1,0 +1,11 @@
+"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+
+[user]
+name = "Frank Mayer"
+email = "gh@frankmayer.dev"
+
+[ui]
+default-command = "log"
+
+[ui.commit]
+automatic-signing = "gpg"

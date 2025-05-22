@@ -1,0 +1,36 @@
+// Zed keymap
+//
+// For information on binding keys, see the Zed
+// documentation: https://zed.dev/docs/key-bindings
+//
+// To see the default key bindings run `zed: open default keymap`
+// from the command palette.
+// ~/.config/zed/keymap.json (Linux) or ~/.zed/keymap.json (macOS)
+[
+  {
+    "context": "Editor && vim_mode == visual",
+    "bindings": {
+      "p": "editor::Paste",
+      "x": "editor::Cut",
+      ">": "editor::Indent",
+      "<": "editor::AutoIndent"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      "d $": "editor::DeleteToEndOfLine",
+      "d d": "editor::DeleteLine",
+      "d l": "editor::Delete",
+      "d w": "editor::DeleteToNextWordEnd",
+      "d e": "editor::DeleteToNextWordEnd",
+      "d 0": "editor::DeleteToBeginningOfLine",
+      "d _": "editor::DeleteToBeginningOfLine",
+      "d b": "editor::DeleteToPreviousSubwordStart",
+      "x x": "editor::CutToEndOfLine",
+      "x $": "editor::CutToEndOfLine",
+      "x l": "editor::Cut",
+      "space f f": "file_finder::Toggle"
+    }
+  }
+]

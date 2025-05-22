@@ -1,0 +1,21 @@
+font-family = "JetBrains Mono"
+font-size = 17
+window-height = 1000000
+window-width = 1000000
+window-save-state = always
+mouse-hide-while-typing = true
+window-inherit-font-size = true
+theme = catppuccin-mocha
+shell-integration = zsh
+window-vsync = true
+window-padding-color = extend
+window-colorspace = display-p3
+copy-on-select = false
+macos-auto-secure-input = true
+macos-titlebar-style = tabs
+cursor-text = #000000
+cursor-click-to-move = true
+keybind = super+l=goto_split:right
+keybind = super+h=goto_split:left
+keybind = super+j=goto_split:bottom
+keybind = super+k=goto_split:top
