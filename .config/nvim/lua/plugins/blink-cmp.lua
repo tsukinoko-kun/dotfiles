@@ -6,7 +6,7 @@ return {
     opts = {
         keymap = {
             preset = "none",
-            -- ["<CR>"] = { "accept", "fallback" },
+            ["<CR>"] = { "accept", "fallback" },
             -- ["<Tab>"] = {
             --     function(cmp)
             --         if cmp.snippet_active() then
@@ -18,8 +18,6 @@ return {
             --     "snippet_forward",
             --     "fallback",
             -- },
-            ["<C-y>"] = { "select_and_accept" },
-            ["<C-z>"] = { "select_and_accept" },
             ["<Up>"] = { "select_prev", "fallback" },
             ["<Down>"] = { "select_next", "fallback" },
         },

@@ -1,0 +1,26 @@
+shell:
+  executable: /bin/zsh
+  args:
+    - -i
+  alias: {}
+  env: {}
+  completion: /bin/zsh
+  max_history_length: 100
+ui:
+  normal_mode_color: "4"
+  insert_mode_color: "2"
+  visual_mode_color: "5"
+  text_color: "7"
+  cursor_color: "7"
+  cursor_text_color: "0"
+  visual_selection_color: "8"
+  border_color: "8"
+  border_focus_color: "5"
+  header_color: "8"
+  header_command_running_color: "7"
+  header_command_done_color: "8"
+  header_command_failed_color: "1"
+  header_copy_color: "8"
+  running_color: "4"
+  completed_color: "2"
+  failed_color: "1"
