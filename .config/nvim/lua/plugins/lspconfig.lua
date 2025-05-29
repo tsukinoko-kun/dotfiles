@@ -130,6 +130,19 @@ return {
                     },
                 },
             })
+            lspconfig.templ.setup({
+                capabilities = capabilities,
+                on_attach = on_attach_default,
+                filetypes = { "templ", "go" },
+                root_dir = require("lspconfig.util").root_pattern("go.mod", ".git"),
+                settings = {
+                    templ = {
+                        files = {
+                            exclude = { "node_modules", ".git", "dist", "build", ".cache", ".next" },
+                        },
+                    },
+                },
+            })
             lspconfig.tailwindcss.setup({
                 capabilities = capabilities,
                 on_attach = on_attach_default,
@@ -147,15 +160,8 @@ return {
                 filetypes = { "c", "cpp", "cc", "objc", "objcpp", "opencl" },
                 root_dir = function(fname)
                     local util = require("lspconfig.util")
-                    return util.root_pattern(
-                        ".git",
-                        "WORKSPACE",
-                        "WORKSPACE.bazel",
-                        ".cmake",
-                        "CMakeLists.txt"
-                    )(fname) or vim.fs.dirname(
-                        vim.fs.find(".git", { path = fname, upward = true })[1]
-                    )
+                    return util.root_pattern(".git", "WORKSPACE", "WORKSPACE.bazel", ".cmake", "CMakeLists.txt")(fname)
+                        or vim.fs.dirname(vim.fs.find(".git", { path = fname, upward = true })[1])
                 end,
                 init_options = {
                     cache = {

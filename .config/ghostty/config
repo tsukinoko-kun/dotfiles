@@ -1,4 +1,4 @@
-command = /Users/frank/go/bin/ohmygosh
+command = /bin/zsh -i -c /Users/frank/go/bin/ohmygosh
 font-family = "JetBrains Mono"
 font-size = 17
 window-height = 1000000

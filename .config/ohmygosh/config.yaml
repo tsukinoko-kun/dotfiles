@@ -2,8 +2,12 @@ shell:
   executable: /bin/zsh
   args:
     - -i
-  alias: {}
-  env: {}
+  alias:
+    lg: lazygit
+    vim: nvim
+    vi: nvim
+  env:
+    EDITOR: nvim
   completion: /bin/zsh
   max_history_length: 100
 ui:
