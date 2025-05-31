@@ -133,7 +133,7 @@ return {
             lspconfig.templ.setup({
                 capabilities = capabilities,
                 on_attach = on_attach_default,
-                filetypes = { "templ", "go" },
+                filetypes = { "templ" },
                 root_dir = require("lspconfig.util").root_pattern("go.mod", ".git"),
                 settings = {
                     templ = {
