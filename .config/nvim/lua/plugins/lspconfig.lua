@@ -74,6 +74,7 @@ return {
                 "jdtls", -- java
                 "biome", -- JS Linter
                 "rust_analyzer", -- Rust
+                "clangd", -- C/C++
             },
             -- auto-install configured servers (with lspconfig)
             automatic_installation = true, -- not the same as :ensure_installed
@@ -112,6 +113,7 @@ return {
             lspconfig.gopls.setup({
                 capabilities = capabilities,
                 on_attach = on_attach_default,
+                filetypes = { "go", "templ", "gomod", "gosum" },
                 settings = {
                     gopls = {
                         completeUnimported = true,
@@ -140,6 +142,50 @@ return {
                         files = {
                             exclude = { "node_modules", ".git", "dist", "build", ".cache", ".next" },
                         },
+                    },
+                },
+            })
+            lspconfig.rust_analyzer.setup({
+                capabilities = capabilities,
+                on_attach = on_attach_default,
+                filetypes = { "rust" },
+                root_dir = require("lspconfig.util").root_pattern("Cargo.toml"),
+                settings = {
+                    ["rust-analyzer"] = {
+                        assist = {
+                            importPrefix = "by_self",
+                            importGranularity = "module",
+                            importPrefixStrictness = "off",
+                        },
+                    },
+                },
+            })
+            lspconfig.clangd.setup({
+                capabilities = capabilities,
+                on_attach = on_attach_default,
+                filetypes = { "c", "cpp", "objc", "objcpp" },
+                root_dir = function(fname)
+                    local util = require("lspconfig.util")
+                    return util.root_pattern(".git", "compile_commands.json", "compile_flags.txt", ".ccls-root")(fname)
+                        or util.root_pattern(".git")(fname)
+                        or vim.fs.dirname(fname)
+                end,
+                init_options = {
+                    clangdFileStatus = true,
+                    recurseGlob = true,
+                    fallbackFlags = {
+                        inherit = true,
+                        warnings = {
+                            clang_tidy_checks = "*",
+                        },
+                    },
+                    completion = {
+                        enable = true,
+                        completeEnumCase = true,
+                        completeStruct = true,
+                        completeUnion = true,
+                        completeType = true,
+                        extraIncludes = { "*.h" },
                     },
                 },
             })
