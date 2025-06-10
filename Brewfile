@@ -44,6 +44,8 @@ brew "eslint_d"
 brew "ffmpeg"
 # Command-line fuzzy finder written in Go
 brew "fzf"
+# GitHub command-line tool
+brew "gh"
 # Distributed revision control system
 brew "git"
 # Tcl/Tk UI for the git revision control system
@@ -84,6 +86,10 @@ brew "luacheck"
 brew "luajit"
 # CLI for Node.js style checker and lint tool for Markdown files
 brew "markdownlint-cli"
+# Fast, highly customisable system info script
+brew "neofetch"
+# Parser generator tool and incremental parsing library
+brew "tree-sitter"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Utility for managing network connections
@@ -130,8 +136,14 @@ brew "vcpkg"
 brew "viu"
 # Internet file retriever
 brew "wget"
+# Bring your favorite shell wherever you go through the ssh
+brew "xxh"
 # Linter for YAML files
 brew "yamllint"
+# Feature-rich command-line audio/video downloader
+brew "yt-dlp"
+# Programming language designed for robustness, optimality, and clarity
+brew "zig"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
 # Additional completion definitions for zsh
@@ -157,6 +169,8 @@ brew "tsukinoko-kun/tap/portal"
 # Simple file server with a little extra
 brew "tsukinoko-kun/tap/serve"
 brew "tursodatabase/tap/turso"
+# Command-line interface for 1Password
+cask "1password-cli"
 # Professional graphic design software
 cask "affinity-designer"
 # Professional image editing software

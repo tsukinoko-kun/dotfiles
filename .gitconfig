@@ -1,5 +1,5 @@
 [user]
-	signingkey = 427B3E61E69C2E51
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID6gD9UQrffhuvGn9/gdnhZdplz3uZ8WKSO32HONPfOP
 	name = Frank Mayer
 	email = gh@frankmayer.dev
 [commit]
@@ -44,3 +44,7 @@
     autoSquash = true
     autoStash = true
     updateRefs = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign

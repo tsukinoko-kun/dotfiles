@@ -76,4 +76,5 @@ return {
             require("supermaven-nvim").setup({})
         end,
     },
+    { "RaafatTurki/hex.nvim" },
 }
