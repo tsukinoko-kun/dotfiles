@@ -7,6 +7,7 @@ mouse-hide-while-typing = true
 window-inherit-font-size = true
 theme = catppuccin-mocha
 shell-integration = zsh
+shell-integration-features = cursor,sudo,title
 window-vsync = true
 window-padding-color = extend
 window-colorspace = display-p3
