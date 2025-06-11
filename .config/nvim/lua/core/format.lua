@@ -4,7 +4,8 @@ local format = function()
     vim.cmd("silent! write")
     local conform = require("conform")
     pcall(conform.format, {
-        lsp_fallback = true,
+        lsp_format = "fallback",
+        quiet = true,
         async = false,
         timeout_ms = 2000,
     })

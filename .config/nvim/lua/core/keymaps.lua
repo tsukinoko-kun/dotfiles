@@ -409,43 +409,43 @@ end, {
 map("n", "<leader>hh", "<cmd>Telescope harpoon marks<cr>", {
     desc = "Fuzzy search Harpoon marks",
 })
-map("n", "<leader>hc", "<cmd>lua require('harpoon.mark').clear_all()<cr>", {
+map("n", "<leader>hc", "<cmd>lua require('harpoon'):list():clear()<cr>", {
     desc = "Clear all Harpoon marks",
 })
-map("n", "<leader>ha", "<cmd>lua require('harpoon.mark').add_file()<cr>", {
+map("n", "<leader>ha", "<cmd>lua require('harpoon'):list():add()<cr>", {
     desc = "Add file to Harpoon",
 })
-map("n", "<leader>hj", '<cmd>lua require("harpoon.ui").nav_next()<cr>', {
+map("n", "<leader>hj", '<cmd>lua require("harpoon"):list():next()<cr>', {
     desc = "Navigate to next Harpoon mark",
 })
-map("n", "<leader>hk", '<cmd>lua require("harpoon.ui").nav_prev()<cr>', {
+map("n", "<leader>hk", '<cmd>lua require("harpoon.ui"):list():prev()<cr>', {
     desc = "Navigate to previous Harpoon mark",
 })
-map("n", "<leader>h1", '<cmd>lua require("harpoon.ui").nav_file(1)<cr>', {
+map("n", "<leader>h1", '<cmd>lua require("harpoon"):list():select(1)<cr>', {
     desc = "Navigate to Harpoon mark 1",
 })
-map("n", "<leader>h2", '<cmd>lua require("harpoon.ui").nav_file(2)<cr>', {
+map("n", "<leader>h2", '<cmd>lua require("harpoon"):list():select(2)<cr>', {
     desc = "Navigate to Harpoon mark 2",
 })
-map("n", "<leader>h3", '<cmd>lua require("harpoon.ui").nav_file(3)<cr>', {
+map("n", "<leader>h3", '<cmd>lua require("harpoon"):list():select(3)<cr>', {
     desc = "Navigate to Harpoon mark 3",
 })
-map("n", "<leader>h4", '<cmd>lua require("harpoon.ui").nav_file(4)<cr>', {
+map("n", "<leader>h4", '<cmd>lua require("harpoon"):list():select(4)<cr>', {
     desc = "Navigate to Harpoon mark 4",
 })
-map("n", "<leader>h5", '<cmd>lua require("harpoon.ui").nav_file(5)<cr>', {
+map("n", "<leader>h5", '<cmd>lua require("harpoon"):list():select(5)<cr>', {
     desc = "Navigate to Harpoon mark 5",
 })
-map("n", "<leader>h6", '<cmd>lua require("harpoon.ui").nav_file(6)<cr>', {
+map("n", "<leader>h6", '<cmd>lua require("harpoon"):list():select(6)<cr>', {
     desc = "Navigate to Harpoon mark 6",
 })
-map("n", "<leader>h7", '<cmd>lua require("harpoon.ui").nav_file(7)<cr>', {
+map("n", "<leader>h7", '<cmd>lua require("harpoon"):list():select(7)<cr>', {
     desc = "Navigate to Harpoon mark 7",
 })
-map("n", "<leader>h8", '<cmd>lua require("harpoon.ui").nav_file(8)<cr>', {
+map("n", "<leader>h8", '<cmd>lua require("harpoon"):list():select(8)<cr>', {
     desc = "Navigate to Harpoon mark 8",
 })
-map("n", "<leader>h9", '<cmd>lua require("harpoon.ui").nav_file(9)<cr>', {
+map("n", "<leader>h9", '<cmd>lua require("harpoon"):list():select(9)<cr>', {
     desc = "Navigate to Harpoon mark 9",
 })
 

@@ -17,11 +17,16 @@ return {
             markdown = { "rustywind" },
             lua = { "stylua" },
             java = { "google-java-format" },
-            cpp = { { "clang-format", "astyle" } },
-            c = { { "clang-format", "astyle" } },
+            cpp = { "clang-format", "astyle" },
+            c = { "clang-format", "astyle" },
             rust = { "rustfmt" },
             go = { "goimports", "gofmt" },
             templ = { "templ" },
         },
+        default_format_opts = {
+            lsp_format = "fallback",
+            stop_after_first = true,
+        },
+        notify_no_formatters = true,
     },
 }
