@@ -7,5 +7,6 @@ export HEMEBREW_PREFIX="/opt/homebrew"
 export VCPKG_ROOT="/Users/frank/Git/vcpkg"
 export CMAKE_C_FLAGS="-Wall -Wextra"
 export CMAKE_PREFIX_PATH="/opt/homebrew"
+export EDITOR="/opt/homebrew/bin/nvim"
 . "$HOME/.cargo/env"
 
