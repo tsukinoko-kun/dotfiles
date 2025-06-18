@@ -10,6 +10,7 @@ require("plugins-setup")
 require("core.keymaps")
 require("core.format")
 require("core.options")
+require("extensions.jj")
 
 -- clear jump list autocmd VimEnter
 vim.cmd("autocmd VimEnter * :clearjumps")
