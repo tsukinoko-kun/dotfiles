@@ -2,6 +2,8 @@ fish_vi_key_bindings
 set -U fish_greeting
 bind -M insert alt-b prevd-or-backward-word repaint
 bind -M insert alt-f nextd-or-forward-word repaint
+bind -M insert super-f fp repaint
+bind -M normal super-f fp repaint
 
 function fish_title
     pwd
@@ -33,28 +35,32 @@ function fish_mode_prompt
 end
 
 function fish_jj_prompt --description 'Print jj status'
-    if jj root --quiet > /dev/null 2> /dev/null
-        jj log --revisions @ --no-graph --ignore-working-copy --color always --limit 1 --template '
-          " " ++
-          separate(" ",
-            "🥋",
-            change_id.shortest(4),
-            bookmarks,
-            "|",
-            concat(
-              if(conflict, "💥"),
-              if(divergent, "🚧"),
-              if(hidden, "👻"),
-              if(immutable, "🔒"),
-            ),
-            raw_escape_sequence("\x1b[1;32m") ++ if(empty, "(empty)"),
-            raw_escape_sequence("\x1b[1;32m") ++ coalesce(
-              truncate_end(29, description.first_line(), "…"),
-              "(no description set)",
-            ) ++ raw_escape_sequence("\x1b[0m"),
-          )
-        '
+    if not command -sq jj
+        return 1
     end
+    if not jj root --quiet > /dev/null 2> /dev/null
+        return 1
+    end
+    and jj log --revisions @ --no-graph --ignore-working-copy --color always --limit 1 --template '
+      " " ++
+      separate(" ",
+        "🥋",
+        change_id.shortest(4),
+        bookmarks,
+        "|",
+        concat(
+          if(conflict, "💥"),
+          if(divergent, "🚧"),
+          if(hidden, "👻"),
+          if(immutable, "🔒"),
+        ),
+        raw_escape_sequence("\x1b[1;32m") ++ if(empty, "(empty)"),
+        raw_escape_sequence("\x1b[1;32m") ++ coalesce(
+          truncate_end(29, description.first_line(), "…"),
+          "(no description set)",
+        ) ++ raw_escape_sequence("\x1b[0m"),
+      )
+    '
 end
 
 function fish_vcs_prompt --description 'Print all vcs prompts'
@@ -97,6 +103,8 @@ end
 
 abbr -a vi nvim
 abbr -a vim nvim
+abbr -a lg lazygit
+alias cd z
 
 set -gx XDG_CONFIG_HOME "/Users/frank/.config"
 set -gx XDG_DATA_HOME "/Users/frank/.local/share"
