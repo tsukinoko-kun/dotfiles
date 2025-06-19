@@ -1,8 +1,6 @@
 tap "avencera/tap"
 tap "bloodmagesoftware/tap"
 tap "goreleaser/tap"
-tap "homebrew/bundle"
-tap "homebrew/services"
 tap "libsql/sqld"
 tap "tsukinoko-kun/tap"
 tap "tursodatabase/tap"
@@ -42,6 +40,8 @@ brew "node"
 brew "eslint_d"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
+# User-friendly command-line shell for UNIX-like operating systems
+brew "fish"
 # Command-line fuzzy finder written in Go
 brew "fzf"
 # GitHub command-line tool

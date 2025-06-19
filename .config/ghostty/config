@@ -1,3 +1,4 @@
+command = /opt/homebrew/bin/fish
 font-family = "JetBrains Mono"
 font-size = 17
 window-height = 1000000
@@ -6,7 +7,7 @@ window-save-state = always
 mouse-hide-while-typing = true
 window-inherit-font-size = true
 theme = catppuccin-mocha
-shell-integration = zsh
+shell-integration = fish
 shell-integration-features = cursor,sudo,title
 window-vsync = true
 window-padding-color = extend
