@@ -5,10 +5,6 @@ bind -M insert alt-f nextd-or-forward-word repaint
 bind -M insert super-f fp repaint
 bind -M normal super-f fp repaint
 
-function fish_title
-    pwd
-end
-
 function fish_mode_prompt
     if test "$fish_key_bindings" = fish_vi_key_bindings
         or test "$fish_key_bindings" = fish_hybrid_key_bindings
