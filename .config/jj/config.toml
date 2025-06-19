@@ -4,8 +4,16 @@
 name = "Frank Mayer"
 email = "gh@frankmayer.dev"
 
+[signing]
+behavior = "own"
+backend = "ssh"
+key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAID6gD9UQrffhuvGn9/gdnhZdplz3uZ8WKSO32HONPfOP"
+
+[git]
+sign-on-push = true
+
+[signing.backends.ssh]
+program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
 [ui]
 default-command = "log"
-
-[ui.commit]
-automatic-signing = "gpg"

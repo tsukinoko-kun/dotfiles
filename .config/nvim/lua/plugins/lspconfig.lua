@@ -74,6 +74,7 @@ return {
                 "jdtls", -- java
                 "biome", -- JS Linter
                 "rust_analyzer", -- Rust
+                "taplo", -- TOML
                 "clangd", -- C/C++
             },
             -- auto-install configured servers (with lspconfig)
@@ -156,6 +157,20 @@ return {
                             importPrefix = "by_self",
                             importGranularity = "module",
                             importPrefixStrictness = "off",
+                        },
+                    },
+                },
+            })
+            lspconfig.taplo.setup({
+                capabilities = capabilities,
+                on_attach = on_attach_default,
+                filetypes = { "toml" },
+                root_dir = require("lspconfig.util").root_pattern("go.mod", ".git"),
+                settings = {
+                    taplo = {
+                        format = {
+                            command = "taplo",
+                            args = { "format", "--check" },
                         },
                     },
                 },
