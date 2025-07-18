@@ -3,7 +3,7 @@ return {
     lazy = true,
     opts = {
         formatters_by_ft = {
-            astro = { "rustywind", "prettierd" },
+            astro = { "prettierd", "rustywind" },
             javascript = { "prettierd" },
             typ = { "typstyle" },
             typst = { "typstyle" },
@@ -19,6 +19,7 @@ return {
             java = { "google-java-format" },
             cpp = { "clang-format", "astyle" },
             c = { "clang-format", "astyle" },
+            proto = { "clang-format" },
             rust = { "rustfmt" },
             go = { "goimports", "gofmt" },
             templ = { "templ" },

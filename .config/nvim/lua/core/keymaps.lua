@@ -322,10 +322,7 @@ map("n", "<leader>gl", "<cmd>Git log<CR>", {
 map("n", "<leader>ff", require("telescope.builtin").find_files, {
     desc = "Fuzzy search files",
 })
-map("n", "<leader>fs", require("telescope.builtin").live_grep, {
-    desc = "Fuzzy search in files",
-})
-map("n", "<leader>fm", function()
+map("n", "<leader>fs", function()
     local opts = { cwd = vim.uv.cwd() }
     local finder = require("telescope.finders").new_async_job({
         command_generator = function(prompt)

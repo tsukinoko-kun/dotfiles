@@ -16,4 +16,5 @@ sign-on-push = true
 program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 
 [ui]
+conflict-marker-style = "git"
 default-command = "log"

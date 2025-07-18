@@ -100,6 +100,7 @@ end
 abbr -a vi nvim
 abbr -a vim nvim
 abbr -a lg lazygit
+abbr -a l ls -la
 alias cd z
 
 set -gx XDG_CONFIG_HOME "/Users/frank/.config"
@@ -114,6 +115,12 @@ set -gx VCPKG_ROOT "/Users/frank/Git/vcpkg"
 set -gx CMAKE_C_FLAGS "-Wall -Wextra"
 set -gx CMAKE_PREFIX_PATH "/opt/homebrew"
 set -gx EDITOR "/opt/homebrew/bin/nvim"
+set -gx SSH_AUTH_SOCK "$HOME/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
+set -gx COMPOSE_BAKE "true"
+set -gx GOBIN "$HOME/go/bin"
+set -gx GOPATH "$HOME/go"
+
+set -gx PKG_CONFIG_PATH "/opt/homebrew/opt/readline/lib/pkgconfig:/opt/homebrew/opt/curl/lib/pkgconfig"
 
 function setcursors
     set -g fish_cursor_default block
@@ -123,6 +130,7 @@ end
 
 set -gx LANG en_US.UTF-8
 
+fish_add_path "/opt/whalebrew/bin"
 fish_add_path "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
 fish_add_path "$HOME/.dotnet/tools"
 fish_add_path "/opt/homebrew/opt/coreutils/libexec/gnubin"
@@ -133,10 +141,13 @@ fish_add_path "/opt/homebrew/bin/"
 fish_add_path "/Users/frank/.rustup/toolchains/stable-aarch64-apple-darwin/bin"
 fish_add_path "/Users/frank/.cargo/bin"
 fish_add_path "/opt/homebrew/opt/ccache/libexec"
+fish_add_path "/opt/homebrew/opt/llvm/bin"
+fish_add_path "/opt/homebrew/opt/curl/bin"
 
 zoxide init fish | source
 fzf --fish | source
 jj util completion fish | source
+pogo completion fish | source
 
 # Catppuccin Mocha Theme for FZF
 set -Ux FZF_DEFAULT_OPTS "\

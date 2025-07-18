@@ -8,5 +8,6 @@ export VCPKG_ROOT="/Users/frank/Git/vcpkg"
 export CMAKE_C_FLAGS="-Wall -Wextra"
 export CMAKE_PREFIX_PATH="/opt/homebrew"
 export EDITOR="/opt/homebrew/bin/nvim"
+export SSH_AUTH_SOCK=/Users/frank/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
 . "$HOME/.cargo/env"
 
