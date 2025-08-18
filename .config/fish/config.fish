@@ -60,7 +60,8 @@ function fish_jj_prompt --description 'Print jj status'
 end
 
 function fish_vcs_prompt --description 'Print all vcs prompts'
-    fish_jj_prompt $argv
+    pogo info $argv
+    or fish_jj_prompt $argv
     or fish_git_prompt $argv
     or fish_hg_prompt $argv
     or fish_fossil_prompt $argv
@@ -101,6 +102,7 @@ abbr -a vi nvim
 abbr -a vim nvim
 abbr -a lg lazygit
 abbr -a l ls -la
+abbr -a oc opencode .
 alias cd z
 
 set -gx XDG_CONFIG_HOME "/Users/frank/.config"
@@ -147,6 +149,7 @@ fish_add_path "/opt/homebrew/opt/curl/bin"
 zoxide init fish | source
 fzf --fish | source
 jj util completion fish | source
+pijul completion fish | source
 pogo completion fish | source
 
 # Catppuccin Mocha Theme for FZF

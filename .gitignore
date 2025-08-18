@@ -3,3 +3,6 @@ Thumbs.db
 .localized
 *.mdb
 *.db
+*.bak
+*.swp
+*~
