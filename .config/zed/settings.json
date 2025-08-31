@@ -7,6 +7,12 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "icon_theme": "JetBrains New UI Icons (Dark)",
+  "theme": "JetBrains New Dark",
+  "terminal": {
+    "dock": "bottom",
+    "font_family": "JetBrainsMono Nerd Font Mono"
+  },
   "completions": {
     "lsp": true,
     "lsp_fetch_timeout_ms": 2000
@@ -16,13 +22,14 @@
     "enabled_in_text_threads": true
   },
   "agent": {
-    "default_profile": "minimal",
-    "always_allow_tool_actions": false,
+    "use_modifier_to_send": true,
+    "play_sound_when_agent_done": true,
+    "default_profile": "write",
+    "always_allow_tool_actions": true,
     "enabled": true,
-    "version": "2",
     "default_model": {
-      "provider": "google",
-      "model": "gemini-2.5-pro-preview-03-25"
+      "provider": "anthropic",
+      "model": "claude-opus-4-1-thinking-latest"
     },
     "commit_message_model": {
       "provider": "google",

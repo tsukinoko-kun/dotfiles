@@ -1,19 +1,38 @@
 tap "avencera/tap"
 tap "bloodmagesoftware/tap"
 tap "goreleaser/tap"
+tap "hashicorp/tap"
 tap "libsql/sqld"
+tap "oven-sh/bun"
+tap "sst/tap"
 tap "tsukinoko-kun/tap"
 tap "tursodatabase/tap"
+# Portable ASCII art graphics library
+brew "aalib"
 # Run your GitHub Actions locally
 brew "act"
 # Cryptography and SSL/TLS Toolkit
 brew "openssl@3"
+# NaCl networking and cryptography library
+brew "libsodium"
+# Library for command-line editing
+brew "readline"
+# General-purpose data compression with high compression ratio
+brew "xz"
+# Display directories as trees (with optional color/HTML output)
+brew "tree"
 # Automate deployment, configuration, and upgrading
 brew "ansible"
+# Zstandard is a real-time compression algorithm
+brew "zstd"
 # Resource monitor. C++ version and continuation of bashtop and bpytop
 brew "btop"
+# Extremely fast non-cryptographic hash algorithm
+brew "xxhash"
 # Object-file caching compiler wrapper
 brew "ccache"
+# Next-gen compiler infrastructure
+brew "llvm"
 # C/C++/ObjC language server
 brew "ccls"
 # Development kit for the Java programming language
@@ -30,6 +49,10 @@ brew "cocoapods"
 brew "coreutils"
 # Static analysis of C and C++ code
 brew "cppcheck"
+# HTTP/3 library written in C
+brew "libnghttp3"
+# Get a file from an HTTP, HTTPS or FTP server
+brew "curl"
 # Convert text between DOS, UNIX, and Mac formats
 brew "dos2unix"
 # .NET Core
@@ -56,6 +79,8 @@ brew "git-lfs"
 brew "gnupg"
 # Open source programming language to build simple/reliable/efficient software
 brew "go"
+# Package compiler and linker metadata toolkit
+brew "pkgconf"
 # Fast linters runner for Go
 brew "golangci-lint"
 # Golang formatter that fixes long lines
@@ -66,6 +91,8 @@ brew "google-java-format"
 brew "gopls"
 # Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
+# Development framework for multimedia applications
+brew "gstreamer"
 # Tool for glamorous shell scripts
 brew "gum"
 # Tools and libraries to manipulate images in many formats
@@ -80,24 +107,32 @@ brew "jsonlint"
 brew "just"
 # Simple terminal UI for git commands
 brew "lazygit"
+# LLM inference in C/C++
+brew "llama.cpp"
+# LLVM Project Linker
+brew "lld"
 # Tool for linting and static analysis of Lua code
 brew "luacheck"
 # Just-In-Time Compiler (JIT) for the Lua programming language
 brew "luajit"
 # CLI for Node.js style checker and lint tool for Markdown files
 brew "markdownlint-cli"
+# Simple tool to make locally trusted development certificates
+brew "mkcert"
 # Fast, highly customisable system info script
 brew "neofetch"
-# Parser generator tool and incremental parsing library
+# Incremental parsing library
 brew "tree-sitter"
 # Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
 # Utility for managing network connections
 brew "netcat"
+# Small build system for use with gyp or CMake
+brew "ninja"
+# Blingful character graphics/TUI library
+brew "notcurses"
 # Pinentry for GPG on Mac
 brew "pinentry-mac"
-# Package compiler and linker metadata toolkit
-brew "pkgconf"
 # Draw UML diagrams
 brew "plantuml"
 # Fast, disk space efficient package manager
@@ -134,6 +169,8 @@ brew "typstyle"
 brew "vcpkg"
 # Simple terminal image viewer written in Rust
 brew "viu"
+# V programming language
+brew "vlang"
 # Internet file retriever
 brew "wget"
 # Bring your favorite shell wherever you go through the ssh
@@ -144,6 +181,8 @@ brew "yamllint"
 brew "yt-dlp"
 # Programming language designed for robustness, optimality, and clarity
 brew "zig"
+# General-purpose lossless data-compression library
+brew "zlib"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
 # Additional completion definitions for zsh
@@ -162,6 +201,12 @@ brew "bloodmagesoftware/tap/docker-craft"
 brew "bloodmagesoftware/tap/makeheaders"
 # Release engineering, simplified
 brew "goreleaser/tap/goreleaser"
+# Vault
+brew "hashicorp/tap/vault"
+# Incredibly fast JavaScript runtime, bundler, transpiler and package manager - all in one.
+brew "oven-sh/bun/bun"
+# The AI coding agent built for the terminal.
+brew "sst/tap/opencode"
 # ls replacement
 brew "tsukinoko-kun/tap/list"
 # Simple local file sharing
@@ -179,12 +224,16 @@ cask "affinity-photo"
 cask "audacity"
 # Display management tool
 cask "betterdisplay"
+# Database version management tool
+cask "dbngin"
 cask "font-jetbrains-mono"
 cask "font-tex-gyre-cursor"
 cask "font-tex-gyre-termes"
 cask "font-tex-gyre-termes-math"
 # Terminal emulator that uses platform-native UI and GPU acceleration
 cask "ghostty"
+# Utility to hide menu bar items
+cask "hiddenbar"
 # Custom Discord client
 cask "legcord"
 # Replacement for Docker Desktop
@@ -193,7 +242,11 @@ cask "orbstack"
 cask "raycast"
 # PDF reader and note-taking application
 cask "skim"
+# Native GUI tool for relational databases
+cask "tableplus"
 # SSH client
 cask "termius"
+# Vim Inspired Electron Browser
+cask "vieb"
 # Multimedia player
 cask "vlc"
