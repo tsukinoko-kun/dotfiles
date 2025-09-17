@@ -177,10 +177,10 @@ function fp
 end
 
 function yolo
-    git add .
+    git add -A
     if test "$argv[1]" = "-a"
         git commit --amend --no-edit
-        git push --force
+        git push --force-with-lease
     else
         git commit
         git push
