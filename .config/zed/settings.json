@@ -23,6 +23,9 @@
   },
   "use_autoclose": false,
   "use_auto_surround": false,
+  "jsx_tag_auto_close": {
+    "enabled": false
+  },
   "always_treat_brackets_as_autoclosed": false,
   "agent": {
     "use_modifier_to_send": true,
