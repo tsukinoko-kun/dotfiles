@@ -57,3 +57,6 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+# bun completions
+[ -s "/Users/frank/.bun/_bun" ] && source "/Users/frank/.bun/_bun"

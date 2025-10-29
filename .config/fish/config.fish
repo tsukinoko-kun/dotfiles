@@ -132,7 +132,7 @@ end
 
 set -gx LANG en_US.UTF-8
 
-fish_add_path "/opt/whalebrew/bin"
+fish_add_path "/Users/frank/Library/pnpm"
 fish_add_path "$HOME/Library/Application Support/JetBrains/Toolbox/scripts"
 fish_add_path "$HOME/.dotnet/tools"
 fish_add_path "/opt/homebrew/opt/coreutils/libexec/gnubin"

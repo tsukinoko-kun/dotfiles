@@ -55,7 +55,6 @@ return {
         "mason-org/mason-lspconfig.nvim",
         dependencies = { "mason-org/mason.nvim" },
         opts = {
-            automatic_enable = false,
             -- list of servers for mason to install
             ensure_installed = {
                 "astro", -- astro
@@ -76,9 +75,178 @@ return {
                 "rust_analyzer", -- Rust
                 "taplo", -- TOML
                 "clangd", -- C/C++
+                "ccls", -- C/C++ (legacy, added for compatibility)
             },
             -- auto-install configured servers (with lspconfig)
-            automatic_installation = true, -- not the same as :ensure_installed
+            automatic_installation = true,
+            handlers = {
+                -- default handler for all servers (applies common capabilities and on_attach)
+                function(server_name)
+                    local capabilities = require("blink.cmp").get_lsp_capabilities()
+                    require("mason-lspconfig").default_handler(server_name, {
+                        capabilities = capabilities,
+                        on_attach = on_attach_default,
+                    })
+                end,
+                -- custom overrides for specific servers (merge with common)
+                ["gopls"] = function(server_name)
+                    local capabilities = require("blink.cmp").get_lsp_capabilities()
+                    local util = require("lspconfig.util")
+                    require("mason-lspconfig").default_handler(server_name, {
+                        capabilities = capabilities,
+                        on_attach = on_attach_default,
+                        filetypes = { "go", "gomod", "gosum" },
+                        settings = {
+                            gopls = {
+                                completeUnimported = true,
+                                analyses = {
+                                    unusedparams = true,
+                                },
+                                hints = {
+                                    assignVariableTypes = true,
+                                    compositeLiteralFields = true,
+                                    compositeLiteralTypes = true,
+                                    constantValues = true,
+                                    functionTypeParameters = true,
+                                    parameterNames = true,
+                                    rangeVariableTypes = true,
+                                },
+                            },
+                        },
+                    })
+                end,
+                ["templ"] = function(server_name)
+                    local capabilities = require("blink.cmp").get_lsp_capabilities()
+                    local util = require("lspconfig.util")
+                    require("mason-lspconfig").default_handler(server_name, {
+                        capabilities = capabilities,
+                        on_attach = on_attach_default,
+                        filetypes = { "templ" },
+                        root_dir = util.root_pattern("go.mod", ".git"),
+                        settings = {
+                            templ = {
+                                files = {
+                                    exclude = { "node_modules", ".git", "dist", "build", ".cache", ".next" },
+                                },
+                            },
+                        },
+                    })
+                end,
+                ["rust_analyzer"] = function(server_name)
+                    local capabilities = require("blink.cmp").get_lsp_capabilities()
+                    local util = require("lspconfig.util")
+                    require("mason-lspconfig").default_handler(server_name, {
+                        capabilities = capabilities,
+                        on_attach = on_attach_default,
+                        filetypes = { "rust" },
+                        root_dir = util.root_pattern("Cargo.toml"),
+                        settings = {
+                            ["rust-analyzer"] = {
+                                assist = {
+                                    importPrefix = "by_self",
+                                    importGranularity = "module",
+                                    importPrefixStrictness = "off",
+                                },
+                            },
+                        },
+                    })
+                end,
+                ["taplo"] = function(server_name)
+                    local capabilities = require("blink.cmp").get_lsp_capabilities()
+                    local util = require("lspconfig.util")
+                    require("mason-lspconfig").default_handler(server_name, {
+                        capabilities = capabilities,
+                        on_attach = on_attach_default,
+                        filetypes = { "toml" },
+                        root_dir = util.root_pattern("go.mod", ".git"),
+                        settings = {
+                            taplo = {
+                                format = {
+                                    command = "taplo",
+                                    args = { "format", "--check" },
+                                },
+                            },
+                        },
+                    })
+                end,
+                ["clangd"] = function(server_name)
+                    local capabilities = require("blink.cmp").get_lsp_capabilities()
+                    local util = require("lspconfig.util")
+                    require("mason-lspconfig").default_handler(server_name, {
+                        capabilities = capabilities,
+                        on_attach = on_attach_default,
+                        filetypes = { "c", "cpp", "objc", "objcpp" },
+                        root_dir = function(fname)
+                            return util.root_pattern(".git", "compile_commands.json", "compile_flags.txt", ".ccls-root")(
+                                fname
+                            ) or util.root_pattern(".git")(fname) or vim.fs.dirname(fname)
+                        end,
+                        init_options = {
+                            clangdFileStatus = true,
+                            recurseGlob = true,
+                            fallbackFlags = {
+                                inherit = true,
+                                warnings = {
+                                    clang_tidy_checks = "*",
+                                },
+                            },
+                            completion = {
+                                enable = true,
+                                completeEnumCase = true,
+                                completeStruct = true,
+                                completeUnion = true,
+                                completeType = true,
+                                extraIncludes = { "*.h" },
+                            },
+                        },
+                    })
+                end,
+                ["tailwindcss"] = function(server_name)
+                    local capabilities = require("blink.cmp").get_lsp_capabilities()
+                    require("mason-lspconfig").default_handler(server_name, {
+                        capabilities = capabilities,
+                        on_attach = on_attach_default,
+                        filetypes = {
+                            "astro",
+                            "templ",
+                            "html",
+                            "javascriptreact",
+                            "typescriptreact",
+                            "svelte",
+                            "eruby",
+                        },
+                        init_options = { userLanguages = { templ = "html" } },
+                        settings = {
+                            tailwindCSS = {
+                                files = {
+                                    exclude = { "node_modules", ".git", "dist", "build", ".cache", ".next" },
+                                },
+                            },
+                        },
+                    })
+                end,
+                ["ccls"] = function(server_name)
+                    local capabilities = require("blink.cmp").get_lsp_capabilities()
+                    local util = require("lspconfig.util")
+                    require("mason-lspconfig").default_handler(server_name, {
+                        capabilities = capabilities,
+                        on_attach = on_attach_default,
+                        filetypes = { "c", "cpp", "cc", "objc", "objcpp", "opencl" },
+                        root_dir = function(fname)
+                            return util.root_pattern(".git", "WORKSPACE", "WORKSPACE.bazel", ".cmake", "CMakeLists.txt")(
+                                fname
+                            ) or vim.fs.dirname(
+                                vim.fs.find(".git", { path = fname, upward = true })[1]
+                            )
+                        end,
+                        init_options = {
+                            cache = {
+                                directory = ".ccls-cache",
+                            },
+                        },
+                    })
+                end,
+            },
         },
     },
 
@@ -100,7 +268,6 @@ return {
             },
         },
         config = function()
-            local lspconfig = require("lspconfig")
             vim.filetype.add({
                 extension = { templ = "templ", razor = "razor", cshtml = "cshtml" },
             })
@@ -109,129 +276,7 @@ return {
                 local hl = "DiagnosticSign" .. type
                 vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
             end
-            local capabilities = require("blink.cmp").get_lsp_capabilities()
-            lspconfig.lua_ls.setup({ capabilities = capabilities, on_attach = on_attach_default })
-            lspconfig.gopls.setup({
-                capabilities = capabilities,
-                on_attach = on_attach_default,
-                filetypes = { "go", "gomod", "gosum" },
-                settings = {
-                    gopls = {
-                        completeUnimported = true,
-                        analyses = {
-                            unusedparams = true,
-                        },
-                        hints = {
-                            assignVariableTypes = true,
-                            compositeLiteralFields = true,
-                            compositeLiteralTypes = true,
-                            constantValues = true,
-                            functionTypeParameters = true,
-                            parameterNames = true,
-                            rangeVariableTypes = true,
-                        },
-                    },
-                },
-            })
-            lspconfig.templ.setup({
-                capabilities = capabilities,
-                on_attach = on_attach_default,
-                filetypes = { "templ" },
-                root_dir = require("lspconfig.util").root_pattern("go.mod", ".git"),
-                settings = {
-                    templ = {
-                        files = {
-                            exclude = { "node_modules", ".git", "dist", "build", ".cache", ".next" },
-                        },
-                    },
-                },
-            })
-            lspconfig.rust_analyzer.setup({
-                capabilities = capabilities,
-                on_attach = on_attach_default,
-                filetypes = { "rust" },
-                root_dir = require("lspconfig.util").root_pattern("Cargo.toml"),
-                settings = {
-                    ["rust-analyzer"] = {
-                        assist = {
-                            importPrefix = "by_self",
-                            importGranularity = "module",
-                            importPrefixStrictness = "off",
-                        },
-                    },
-                },
-            })
-            lspconfig.taplo.setup({
-                capabilities = capabilities,
-                on_attach = on_attach_default,
-                filetypes = { "toml" },
-                root_dir = require("lspconfig.util").root_pattern("go.mod", ".git"),
-                settings = {
-                    taplo = {
-                        format = {
-                            command = "taplo",
-                            args = { "format", "--check" },
-                        },
-                    },
-                },
-            })
-            lspconfig.clangd.setup({
-                capabilities = capabilities,
-                on_attach = on_attach_default,
-                filetypes = { "c", "cpp", "objc", "objcpp" },
-                root_dir = function(fname)
-                    local util = require("lspconfig.util")
-                    return util.root_pattern(".git", "compile_commands.json", "compile_flags.txt", ".ccls-root")(fname)
-                        or util.root_pattern(".git")(fname)
-                        or vim.fs.dirname(fname)
-                end,
-                init_options = {
-                    clangdFileStatus = true,
-                    recurseGlob = true,
-                    fallbackFlags = {
-                        inherit = true,
-                        warnings = {
-                            clang_tidy_checks = "*",
-                        },
-                    },
-                    completion = {
-                        enable = true,
-                        completeEnumCase = true,
-                        completeStruct = true,
-                        completeUnion = true,
-                        completeType = true,
-                        extraIncludes = { "*.h" },
-                    },
-                },
-            })
-            lspconfig.tailwindcss.setup({
-                capabilities = capabilities,
-                on_attach = on_attach_default,
-                filetypes = { "astro", "templ", "html", "javascriptreact", "typescriptreact", "svelte", "eruby" },
-                init_options = { userLanguages = { templ = "html" } },
-                settings = {
-                    tailwindCSS = {
-                        files = {
-                            exclude = { "node_modules", ".git", "dist", "build", ".cache", ".next" },
-                        },
-                    },
-                },
-            })
-            lspconfig.ccls.setup({
-                filetypes = { "c", "cpp", "cc", "objc", "objcpp", "opencl" },
-                root_dir = function(fname)
-                    local util = require("lspconfig.util")
-                    return util.root_pattern(".git", "WORKSPACE", "WORKSPACE.bazel", ".cmake", "CMakeLists.txt")(fname)
-                        or vim.fs.dirname(vim.fs.find(".git", { path = fname, upward = true })[1])
-                end,
-                init_options = {
-                    cache = {
-                        directory = ".ccls-cache",
-                    },
-                },
-                capabilities = capabilities,
-                on_attach = on_attach_default,
-            })
+            -- Setups moved to mason-lspconfig handlers for new API compatibility
         end,
     },
 
@@ -240,6 +285,7 @@ return {
         ft = { "typescript", "javascript", "javascriptreact", "typescriptreact" },
         dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
         opts = {
+            capabilities = require("blink.cmp").get_lsp_capabilities(),
             on_attach = on_attach_default,
             root_dir = function(fname)
                 local util = require("lspconfig.util")

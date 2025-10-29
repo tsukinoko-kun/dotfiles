@@ -6,11 +6,10 @@ end)
 vim.opt.termguicolors = true
 vim.g.mapleader = " "
 
-require("plugins-setup")
-require("core.keymaps")
-require("core.format")
 require("core.options")
-require("extensions.jj")
+require("core.format")
+require("config.lazy")
+require("core.keymaps")
 
 -- clear jump list autocmd VimEnter
 vim.cmd("autocmd VimEnter * :clearjumps")

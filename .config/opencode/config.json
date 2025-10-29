@@ -1,6 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "model": "anthropic/claude-sonnet-4-5-20250929",
+  "model": "opencode/grok-code",
   "keybinds": {
     "input_submit": "ctrl+enter",
     "input_newline": "enter,ctrl+j"

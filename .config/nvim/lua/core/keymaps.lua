@@ -295,7 +295,7 @@ map("n", "<leader>gb", "<cmd>Git branch<CR>", {
 map("n", "<leader>gL", function()
     require("gitsigns").toggle_linehl()
     require("gitsigns").toggle_word_diff()
-    require("gitsigns").toggle_deleted()
+    require("gitsigns").preview_hunk_inline()
 end, {
     desc = "Git lens",
 })

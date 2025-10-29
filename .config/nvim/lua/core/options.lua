@@ -1,5 +1,8 @@
 local opt = vim.opt
 
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
 opt.hidden = true -- Enable background buffers
 opt.history = 100 -- Remember N lines in history
 opt.lazyredraw = true -- Faster scrolling
