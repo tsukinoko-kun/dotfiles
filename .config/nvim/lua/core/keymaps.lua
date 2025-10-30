@@ -377,7 +377,7 @@ map("n", "<leader>p", "<cmd>Telescope neoclip<cr>", {
 map("n", "<leader>z", "<cmd>Telescope zoxide list<cr>", {
     desc = "Fuzzy search zoxide history",
 })
-map("n", "K", "<cmd>lua vim.lsp.buf.hover()<cr>", {
+map("n", "K", vim.lsp.buf.hover, {
     desc = "Hover",
 })
 map("n", "<leader>lco", "<cmd>lua require('telescope.builtin').lsp_outgoing_calls()<cr>", {

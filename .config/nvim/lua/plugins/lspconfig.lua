@@ -32,12 +32,17 @@ local on_attach_default = function(client, bufnr)
     map("n", "<leader>lD", "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = "Show diagnostics for current buffer" })
     map("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format buffer" })
 
-    -- typescript specific keymaps (e.g. rename file and update imports)
-    if client.name == "typescript-tools" then
-        map("n", "<leader>lrf", ":TSToolsRenameFile<CR>", { desc = "Rename file and update imports" })
-        map("n", "<leader>loi", ":TSToolsOrganizeImports<CR>", { desc = "Organize imports" })
-        map("n", "<leader>lru", ":TSToolsRemoveUnused<CR>", { desc = "Remove unused imports" })
-        map("n", "gs", ":TSToolsGoToSourceDefinition<CR>", { desc = "Go to source definition" })
+    if client.name == "tsgo" then
+        map("n", "<leader>lrf", function()
+            vim.lsp.buf.code_action({ apply = true, kind = "source.organizeImports" })
+        end, { desc = "Organize imports / Rename file" })
+        map("n", "<leader>loi", function()
+            vim.lsp.buf.code_action({ apply = true, kind = "source.organizeImports" })
+        end, { desc = "Organize imports" })
+        map("n", "<leader>lru", function()
+            vim.lsp.buf.code_action({ apply = true, kind = "source.removeUnused" })
+        end, { desc = "Remove unused imports" })
+        map("n", "gs", vim.lsp.buf.definition, { desc = "Go to source definition" }) -- tsgo supports this natively
     end
 
     -- go specific keymaps (e.g. rename file and update imports)
@@ -61,7 +66,6 @@ return {
                 "svelte", -- svelte
                 "gopls", -- go
                 "templ", -- html templating
-                "htmx", -- htmx
                 "html", -- html
                 "cssls", -- css, scss, less
                 "tailwindcss", -- tailwind
@@ -75,7 +79,6 @@ return {
                 "rust_analyzer", -- Rust
                 "taplo", -- TOML
                 "clangd", -- C/C++
-                "ccls", -- C/C++ (legacy, added for compatibility)
             },
             -- auto-install configured servers (with lspconfig)
             automatic_installation = true,
@@ -276,43 +279,28 @@ return {
                 local hl = "DiagnosticSign" .. type
                 vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
             end
-            -- Setups moved to mason-lspconfig handlers for new API compatibility
-        end,
-    },
 
-    {
-        "pmizio/typescript-tools.nvim",
-        ft = { "typescript", "javascript", "javascriptreact", "typescriptreact" },
-        dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-        opts = {
-            capabilities = require("blink.cmp").get_lsp_capabilities(),
-            on_attach = on_attach_default,
-            root_dir = function(fname)
-                local util = require("lspconfig.util")
-                return util.root_pattern(
-                    "tsconfig.json",
-                    "turbo.json",
-                    "docker-compose.yml",
-                    ".eslintrc.cjs",
-                    "pnpm-workspace.yaml",
-                    "pnpm-lock.yaml"
-                )(fname) or util.root_pattern("package.json", ".git")(fname) or util.find_git_ancestor(
-                    fname
-                )
-            end,
-            settings = {
-                publish_diagnostic_on = "change",
-                tsserver_locale = "en",
-                tsserver_file_preferences = {
-                    includeInlayParameterNameHints = "all",
-                    includeCompletionsForModuleExports = true,
-                    quotePreference = "auto",
+            -- Manually configure tsgo since it's not managed by mason
+            -- This assumes `tsgo` is in your PATH
+            vim.lsp.config("tsgo", {
+                cmd = { "tsgo", "--lsp", "--stdio" },
+                on_attach = on_attach_default,
+                capabilities = require("blink.cmp").get_lsp_capabilities(),
+                filetypes = {
+                    "javascript",
+                    "javascriptreact",
+                    "javascript.jsx",
+                    "javascript.mjs",
+                    "javascript.cjs",
+                    "typescript",
+                    "typescriptreact",
+                    "typescript.tsx",
+                    "typescript.mts",
+                    "typescript.cts",
                 },
-                tsserver_format_options = {
-                    allowIncompleteCompletions = false,
-                    allowRenameOfImportPath = false,
-                },
-            },
-        },
+                root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
+            })
+            vim.lsp.enable("tsgo")
+        end,
     },
 }
