@@ -109,6 +109,7 @@ set -gx XDG_CONFIG_HOME "/Users/frank/.config"
 set -gx XDG_DATA_HOME "/Users/frank/.local/share"
 set -gx XDG_CACHE_HOME "/Users/frank/.cache"
 set -gx XDG_STATE_HOME "/Users/frank/.local/state"
+set -gx BUN_INSTALL_CACHE_DIR "$XDG_CACHE_HOME/bun"
 
 set -gx PNPM_HOME "$HOME/Library/pnpm"
 set -gx DOTNET_ROOT "/opt/homebrew/opt/dotnet/libexec"

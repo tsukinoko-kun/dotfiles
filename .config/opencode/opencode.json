@@ -1,9 +1,11 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "theme": "catppuccin",
   "model": "opencode/grok-code",
   "keybinds": {
     "input_submit": "ctrl+enter",
-    "input_newline": "enter,ctrl+j"
+    "input_newline": "enter,ctrl+j",
+    "input_paste": "ctrl+shift+v"
   },
   "permission": {
     "edit": "allow",

@@ -1,9 +1,13 @@
 tap "avencera/tap"
 tap "bloodmagesoftware/tap"
+tap "charmbracelet/tap"
+tap "go-task/tap"
 tap "goreleaser/tap"
 tap "hashicorp/tap"
+tap "krishkrosh/apps"
 tap "libsql/sqld"
 tap "oven-sh/bun"
+tap "pogo-vcs/tap"
 tap "sst/tap"
 tap "tsukinoko-kun/tap"
 tap "tursodatabase/tap"
@@ -57,12 +61,14 @@ brew "curl"
 brew "dos2unix"
 # .NET Core
 brew "dotnet"
-# Platform built on V8 to build network applications
+# Open-source, cross-platform JavaScript runtime environment
 brew "node"
 # Speed up eslint to accelerate your development workflow
 brew "eslint_d"
 # Play, record, convert, and stream audio and video
 brew "ffmpeg"
+# Firebase command-line tools
+brew "firebase-cli"
 # User-friendly command-line shell for UNIX-like operating systems
 brew "fish"
 # Command-line fuzzy finder written in Go
@@ -81,6 +87,8 @@ brew "gnupg"
 brew "go"
 # Package compiler and linker metadata toolkit
 brew "pkgconf"
+# Stricter gofmt
+brew "gofumpt"
 # Fast linters runner for Go
 brew "golangci-lint"
 # Golang formatter that fixes long lines
@@ -95,6 +103,8 @@ brew "graphviz"
 brew "gstreamer"
 # Tool for glamorous shell scripts
 brew "gum"
+# Command-line benchmarking tool
+brew "hyperfine"
 # Tools and libraries to manipulate images in many formats
 brew "imagemagick"
 # Git-compatible distributed version control system
@@ -115,8 +125,12 @@ brew "lld"
 brew "luacheck"
 # Just-In-Time Compiler (JIT) for the Lua programming language
 brew "luajit"
+# Package manager for the Lua programming language
+brew "luarocks"
 # CLI for Node.js style checker and lint tool for Markdown files
 brew "markdownlint-cli"
+# Unified display of technical and tag data for audio/video
+brew "media-info"
 # Simple tool to make locally trusted development certificates
 brew "mkcert"
 # Fast, highly customisable system info script
@@ -131,6 +145,8 @@ brew "netcat"
 brew "ninja"
 # Blingful character graphics/TUI library
 brew "notcurses"
+# Swiss-army knife of markup format conversion
+brew "pandoc"
 # Pinentry for GPG on Mac
 brew "pinentry-mac"
 # Draw UML diagrams
@@ -159,8 +175,12 @@ brew "stow"
 brew "stylelint"
 # Opinionated Lua code formatter
 brew "stylua"
+# Modernized, complete, self-contained TeX/LaTeX engine
+brew "tectonic"
 # Language for writing HTML user interfaces in Go
 brew "templ"
+# Command-line tool for sharing terminal over the web
+brew "ttyd"
 # Markup-based typesetting system
 brew "typst"
 # Beautiful and reliable typst code formatter
@@ -173,6 +193,8 @@ brew "viu"
 brew "vlang"
 # Internet file retriever
 brew "wget"
+# Utilities to create and convert Web Open Font File (WOFF) files
+brew "woff2"
 # Bring your favorite shell wherever you go through the ssh
 brew "xxh"
 # Linter for YAML files
@@ -199,6 +221,10 @@ brew "avencera/tap/rustywind"
 brew "bloodmagesoftware/tap/docker-craft"
 # Generate C/C++ header files from source files
 brew "bloodmagesoftware/tap/makeheaders"
+# A powerful terminal-based AI assistant for developers, providing intelligent coding assistance directly in your terminal.
+brew "charmbracelet/tap/crush"
+# Task runner / simpler Make alternative written in Go
+brew "go-task/tap/go-task"
 # Release engineering, simplified
 brew "goreleaser/tap/goreleaser"
 # Vault
@@ -234,8 +260,12 @@ cask "font-tex-gyre-termes-math"
 cask "ghostty"
 # Utility to hide menu bar items
 cask "hiddenbar"
+# Free and open-source media player
+cask "iina"
 # Custom Discord client
 cask "legcord"
+# Utility to display the lid angle and play a creaking sound
+cask "lidanglesensor"
 # Replacement for Docker Desktop
 cask "orbstack"
 # Control your tools with a few keystrokes
@@ -246,7 +276,23 @@ cask "skim"
 cask "tableplus"
 # SSH client
 cask "termius"
-# Vim Inspired Electron Browser
-cask "vieb"
+# Turn your MacBook's trackpad into a precise digital weighing scale
+cask "trackweight"
 # Multimedia player
 cask "vlc"
+go "github.com/air-verse/air"
+go "github.com/tsukinoko-kun/bauplan"
+go "github.com/tsukinoko-kun/ckuna"
+go "github.com/bloodmagesoftware/climage"
+go "github.com/spf13/cobra-cli"
+go "gqlc"
+go "github.com/tsukinoko-kun/netest"
+go "github.com/pogo-vcs/pogo"
+go "google.golang.org/protobuf/cmd/protoc-gen-go"
+go "google.golang.org/grpc/cmd/protoc-gen-go-grpc"
+go "honnef.co/go/tools/cmd/staticcheck"
+go "github.com/a-h/templ/cmd/templ"
+go "github.com/tsukinoko-kun/timy"
+go "github.com/tsukinoko-kun/tout"
+go "white"
+go "github.com/pogo-vcs/windows-service"

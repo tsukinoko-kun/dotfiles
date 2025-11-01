@@ -20,18 +20,6 @@ local on_attach_default = function(client, bufnr)
         vim.keymap.set(mode, lhs, rhs, options)
     end
 
-    -- set keybinds
-    map("n", "gr", "<cmd>Telescope lsp_references<CR>", { desc = "Show references" })
-    map("n", "gD", vim.lsp.buf.declaration, { desc = "Go to declaration" })
-    map("n", "gd", "<cmd>Telescope lsp_definitions<CR>", { desc = "Go to definition" })
-    map("n", "gi", "<cmd>Telescope lsp_implementations<CR>", { desc = "Go to implementation" })
-    map("n", "gt", "<cmd>Telescope lsp_type_definitions<CR>", { desc = "Go to type definition" })
-    map({ "n", "v" }, "<leader>la", vim.lsp.buf.code_action, { desc = "Show code actions" })
-    map("n", "<leader>lr", vim.lsp.buf.rename, { desc = "Rename symbol" })
-    map("n", "<leader>ld", vim.diagnostic.open_float, { desc = "Show diagnostics for current line" })
-    map("n", "<leader>lD", "<cmd>Telescope diagnostics bufnr=0<CR>", { desc = "Show diagnostics for current buffer" })
-    map("n", "<leader>lf", vim.lsp.buf.format, { desc = "Format buffer" })
-
     if client.name == "tsgo" then
         map("n", "<leader>lrf", function()
             vim.lsp.buf.code_action({ apply = true, kind = "source.organizeImports" })
@@ -218,6 +206,7 @@ return {
                             "svelte",
                             "eruby",
                         },
+                        root_markers = { "package.json", ".git" },
                         init_options = { userLanguages = { templ = "html" } },
                         settings = {
                             tailwindCSS = {

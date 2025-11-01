@@ -3,6 +3,8 @@ local opt = vim.opt
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
+vim.diagnostic.config({ virtual_text = false, virtual_lines = false, underline = true })
+
 opt.hidden = true -- Enable background buffers
 opt.history = 100 -- Remember N lines in history
 opt.lazyredraw = true -- Faster scrolling

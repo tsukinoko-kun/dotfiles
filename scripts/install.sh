@@ -25,13 +25,6 @@ sudo ln -s /opt/homebrew/opt/dotnet/libexec /usr/local/share/dotnet
 /opt/homebrew/bin/go install github.com/a-h/templ/cmd/templ@latest
 /opt/homebrew/bin/go install github.com/spf13/cobra-cli@latest
 
-# Pinentry
-if [ ! -e "$HOME/.gnupg/gpg-agent.conf" ]; then
-    echo 'pinentry-program /opt/homebrew/bin/pinentry-mac' > "$HOME/.gnupg/gpg-agent.conf"
-    gpgconf --kill gpg-agent
-    gpgconf --launch gpg-agent
-fi
-
 # Rust
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 mkdir ~/.zfunc
