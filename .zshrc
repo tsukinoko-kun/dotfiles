@@ -5,6 +5,7 @@ compinit
 source <(jj util completion zsh)
 
 eval "$(zoxide init zsh)"
+eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
 source <(fzf --zsh)
 source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

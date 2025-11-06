@@ -146,8 +146,10 @@ fish_add_path "/Users/frank/.cargo/bin"
 fish_add_path "/opt/homebrew/opt/ccache/libexec"
 fish_add_path "/opt/homebrew/opt/llvm/bin"
 fish_add_path "/opt/homebrew/opt/curl/bin"
+fish_add_path "$HOME/.local/bin"
 
 zoxide init fish | source
+direnv hook fish | source
 fzf --fish | source
 jj util completion fish | source
 pijul completion fish | source
