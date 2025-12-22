@@ -2,6 +2,15 @@ return {
     "stevearc/conform.nvim",
     lazy = true,
     opts = {
+        notify_on_error = false,
+        formatters = {
+            odinfmt = {
+                -- Change where to find the command if it isn't in your path.
+                command = "odinfmt",
+                args = { "-stdin" },
+                stdin = true,
+            },
+        },
         formatters_by_ft = {
             astro = { "prettierd", "rustywind" },
             javascript = { "prettierd" },
@@ -24,6 +33,7 @@ return {
             rust = { "rustfmt" },
             go = { "goimports", "gofmt" },
             templ = { "templ" },
+            odin = { "odinfmt" },
         },
         default_format_opts = {
             lsp_format = "fallback",
