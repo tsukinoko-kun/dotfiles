@@ -60,7 +60,7 @@ function fish_jj_prompt --description 'Print jj status'
 end
 
 function fish_vcs_prompt --description 'Print all vcs prompts'
-    pogo info $argv
+    timeout 1 pogo info $argv
     or fish_jj_prompt $argv
     or fish_git_prompt $argv
     or fish_hg_prompt $argv
@@ -147,6 +147,8 @@ fish_add_path "/opt/homebrew/opt/ccache/libexec"
 fish_add_path "/opt/homebrew/opt/llvm/bin"
 fish_add_path "/opt/homebrew/opt/curl/bin"
 fish_add_path "$HOME/.local/bin"
+fish_add_path "$HOME/Git/personal/ols"
+fish_add_path "$HOME/.cache/.bun/bin"
 
 zoxide init fish | source
 direnv hook fish | source
@@ -154,6 +156,7 @@ fzf --fish | source
 jj util completion fish | source
 pijul completion fish | source
 pogo completion fish | source
+source "$HOME/.cargo/env.fish"
 
 # Catppuccin Mocha Theme for FZF
 set -Ux FZF_DEFAULT_OPTS "\
@@ -189,3 +192,59 @@ function yolo
         git push
     end
 end
+fish_add_path $HOME/.local/bin
+
+function ghopen
+    # 1. Check if we are inside a Git repository
+    if not git rev-parse --is-inside-work-tree >/dev/null 2>&1
+        echo "Error: Not inside a Git repository."
+        return 1
+    end
+
+    # 2. Get the remote origin URL
+    set -l remote_url (git config --get remote.origin.url)
+
+    if test -z "$remote_url"
+        echo "Error: No remote origin found."
+        return 1
+    end
+
+    # 3. Check if the remote is hosted on GitHub
+    if not string match -q "*github.com*" -- $remote_url
+        echo "Error: Remote origin is not on GitHub ($remote_url)"
+        return 1
+    end
+
+    # 4. Normalize the URL to HTTPS
+    # Remove the trailing .git if it exists
+    set -l final_url (string replace -r '\.git$' '' -- $remote_url)
+
+    # If it is an SSH URL (starts with git@), convert it to HTTPS
+    if string match -q "git@*" -- $final_url
+        # Replace 'git@github.com:' with 'https://github.com/'
+        # We use regex to handle the colon separator used in SSH
+        set final_url (string replace -r '^git@github\.com:' 'https://github.com/' -- $final_url)
+    end
+
+    echo "Opening $final_url ..."
+
+    # 5. Open in the default browser (Cross-platform)
+    if type -q open
+        # macOS
+        open $final_url
+    else if type -q xdg-open
+        # Linux
+        xdg-open $final_url
+    else if type -q wslview
+        # Windows Subsystem for Linux (WSL)
+        wslview $final_url
+    else
+        echo "Error: Could not detect a browser opener (tried open, xdg-open, wslview)."
+        return 1
+    end
+end
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /Users/frank/.lmstudio/bin
+# End of LM Studio CLI section
+

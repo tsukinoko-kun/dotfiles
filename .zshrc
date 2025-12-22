@@ -7,6 +7,7 @@ source <(jj util completion zsh)
 eval "$(zoxide init zsh)"
 eval "$(direnv hook zsh)"
 eval "$(starship init zsh)"
+. "$HOME/.cargo/env"
 source <(fzf --zsh)
 source $HOMEBREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source $HOMEBREW_PREFIX/share/zsh-history-substring-search/zsh-history-substring-search.zsh
@@ -61,3 +62,8 @@ esac
 
 # bun completions
 [ -s "/Users/frank/.bun/_bun" ] && source "/Users/frank/.bun/_bun"
+
+# Added by LM Studio CLI (lms)
+export PATH="$PATH:/Users/frank/.lmstudio/bin"
+# End of LM Studio CLI section
+
