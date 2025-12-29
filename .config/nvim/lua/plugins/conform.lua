@@ -34,6 +34,7 @@ return {
             go = { "goimports", "gofmt" },
             templ = { "templ" },
             odin = { "odinfmt" },
+            python = { "black" },
         },
         default_format_opts = {
             lsp_format = "fallback",

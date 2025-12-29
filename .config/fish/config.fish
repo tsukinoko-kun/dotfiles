@@ -149,6 +149,7 @@ fish_add_path "/opt/homebrew/opt/curl/bin"
 fish_add_path "$HOME/.local/bin"
 fish_add_path "$HOME/Git/personal/ols"
 fish_add_path "$HOME/.cache/.bun/bin"
+fish_add_path "$HOMEBREW_PREFIX/opt/gnu-tar/libexec/gnubin"
 
 zoxide init fish | source
 direnv hook fish | source
@@ -242,6 +243,16 @@ function ghopen
         echo "Error: Could not detect a browser opener (tried open, xdg-open, wslview)."
         return 1
     end
+end
+
+function backup
+    set -l backup_dir "$HOME/Documents/backups"
+    mkdir -p $backup_dir
+    set -l timestamp (date +%Y-%m-%d_%H-%M-%S)
+    set -l file_name "$backup_dir/$timestamp.tar.gz"
+    set -l working_dir (pwd)
+    tar --exclude-vcs-ignores --exclude-vcs -czf $file_name -C $working_dir .
+    echo "Backup created: $file_name"
 end
 
 # Added by LM Studio CLI (lms)

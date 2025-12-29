@@ -2,6 +2,9 @@ local opt = vim.opt
 
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+vim.opt.foldenable = true
 
 vim.diagnostic.config({ virtual_text = false, virtual_lines = false, underline = true })
 
