@@ -38,6 +38,7 @@ return {
                 "taplo",
                 "clangd",
                 "ols",
+                "ty",
             }
 
             require("mason-lspconfig").setup({
@@ -231,6 +232,12 @@ return {
                     "typescript.cts",
                 },
                 root_markers = { "tsconfig.json", "jsconfig.json", "package.json", ".git" },
+            })
+
+            -- Python
+            vim.lsp.config("ty", {
+                root_markers = { "pyproject.toml", ".git" },
+                filetypes = { "python" },
             })
 
             -- Filetype mapping
