@@ -249,7 +249,7 @@ function backup
     set -l backup_dir "$HOME/Documents/backups"
     mkdir -p $backup_dir
     set -l timestamp (date +%Y-%m-%d_%H-%M-%S)
-    set -l file_name "$backup_dir/$timestamp.tar.gz"
+    set -l file_name "$backup_dir/$(basename $PWD)_$timestamp.tar.gz"
     set -l working_dir (pwd)
     tar --exclude-vcs-ignores --exclude-vcs -czf $file_name -C $working_dir .
     echo "Backup created: $file_name"
